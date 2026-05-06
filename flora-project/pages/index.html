@@ -1,0 +1,1653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FLORA Flower Shop</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #fff1f6;
+        }
+
+        body.ar {
+            direction: rtl;
+            text-align: right;
+        }
+
+        body.en {
+            direction: ltr;
+            text-align: left;
+        }
+
+        /* TOP BAR */
+        .top-bar {
+            background-color: #ffcbde;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        /* HEADER */
+        .site-header {
+            background-color: #ffcbde;
+            border-bottom: 1px solid #ddd;
+            padding: 1rem;
+        }
+
+        /* LANGUAGE SWITCH */
+        .lang {
+            cursor: pointer;
+            padding: 5px 10px;
+            border-radius: 3px;
+            margin-right: 5px;
+        }
+
+        .lang.active,
+        #langEN {
+            color: #fff;
+            background-color: #851720;
+        }
+
+        #langAR {
+            color: #851720;
+            background-color: #ffcbde;
+        }
+
+        /* LOGO */
+        .logo-link {
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .logo-img {
+            width: 120%;
+            height: auto;
+            max-width: 150px;
+        }
+
+        /* HEADER ICONS */
+        .header-icons {
+            display: flex;
+            gap: 20px;
+            justify-content: flex-end;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .icon-container {
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .icon-container i {
+            font-size: 20px;
+        }
+
+        .icon-text {
+            font-size: 12px;
+        }
+
+        /* CART BADGE */
+        .cart-wrapper {
+            position: relative;
+        }
+
+        .cart-badge {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: #851720;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+
+        /* NAVBAR */
+        .main-navbar {
+            background-color: #851720;
+            margin-top: 15px;
+            border-radius: 5px;
+        }
+
+        .main-navbar .navbar-nav {
+            gap: 30px;
+        }
+
+        .main-navbar .nav-link {
+            color: #ffcbde;
+            font-weight: 500;
+            font-size: 16px;
+        }
+
+        /* USER AVATAR */
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            background-color: #851720;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 14px;
+            cursor: pointer;
+            border: 2px solid #851720;
+            transition: all 0.3s ease;
+        }
+
+        .user-avatar:hover {
+            background-color: #6b1218;
+            transform: scale(1.1);
+        }
+
+        .user-avatar-lg {
+            width: 80px;
+            height: 80px;
+            font-size: 32px;
+            margin: 0 auto 20px;
+            background-color: #851720;
+        }
+
+        /* CATEGORY */
+        .category {
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .category:hover {
+            transform: scale(1.1);
+        }
+
+        .category-img {
+            width: 100px;
+            height: 100px;
+            border: 2px solid #851720;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .category a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .category p {
+            margin-top: 15px;
+            font-weight: 500;
+        }
+
+        /* SECTION HEADINGS */
+        .section-title {
+            color: #851720;
+            font-style: italic;
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 32px;
+            margin-bottom: 30px;
+        }
+
+        .section-title-left {
+            text-align: left;
+        }
+
+        .page-title {
+            color: #851720;
+            font-style: italic;
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 48px;
+            font-weight: bold;
+        }
+
+        .page-subtitle {
+            color: #851720;
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 18px;
+            margin-top: 10px;
+        }
+
+        /* PROMO CARD */
+        .promo-card {
+            background-color: #fff1f6;
+            border: 2px solid #851720;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            color: #851720;
+            font-family: 'Times New Roman', Times, serif;
+        }
+
+        .promo-card:hover {
+            box-shadow: 0 4px 15px rgba(133, 23, 32, 0.3);
+            transform: translateY(-5px);
+        }
+
+        .promo-card .promo-img {
+            width: 100px;
+            height: 100px;
+            border: 2px solid #851720;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+        }
+
+        .promo-card h5 {
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .promo-card p {
+            font-size: 16px;
+            margin-top: 10px;
+        }
+
+        /* FEATURED PRODUCTS */
+        .featured-section {
+            color: #851720;
+        }
+
+        .product-img {
+            width: 150px;
+            height: 150px;
+            border: 2px solid #000;
+            object-fit: cover;
+            margin-bottom: 15px;
+        }
+
+        .product-name {
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .product-price {
+            font-size: 18px;
+            font-weight: bold;
+            color: #851720;
+        }
+
+        .btn-add-cart {
+            background-color: #851720;
+            color: #ffcbde;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 500;
+            margin-top: 10px;
+        }
+
+        .btn-add-cart:hover {
+            background-color: #6b1218;
+        }
+
+        /* REVIEW CARD */
+        .review-card {
+            background-color: #fff1f6;
+            border: 2px solid #851720;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            color: #851720;
+            font-family: 'Times New Roman', Times, serif;
+        }
+
+        .review-card:hover {
+            box-shadow: 0 4px 15px rgba(133, 23, 32, 0.3);
+        }
+
+        .review-card .star-icon {
+            color: #ffb700;
+            font-size: 20px;
+        }
+
+        .review-card p {
+            margin-top: 15px;
+            font-style: italic;
+            font-size: 16px;
+        }
+
+        .review-card h6 {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        /* FOOTER */
+        .site-footer {
+            background-color: #851720;
+            padding: 40px 0;
+            margin-top: 60px;
+        }
+
+        .site-footer h4 {
+            color: #FFDAE4;
+            font-weight: bold;
+            font-size: 24px;
+        }
+
+        .site-footer h5 {
+            color: #FFDAE4;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .site-footer p,
+        .site-footer li,
+        .site-footer a {
+            color: #FFDAE4;
+            margin: 10px 0;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        .footer-social a {
+            color: #FFDAE4;
+            text-decoration: none;
+        }
+
+        .footer-policies {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-policies li {
+            margin-bottom: 8px;
+            cursor: pointer;
+        }
+
+        .footer-divider {
+            border: 1px solid #FFDAE4;
+            margin-top: 30px;
+        }
+
+        .footer-copy {
+            color: #FFDAE4;
+            margin: 0;
+        }
+
+        /* MODAL HEADER */
+        .modal-header-primary {
+            background-color: #851720;
+            color: #ffcbde;
+        }
+
+        /* FORM STYLES */
+        .form-input-primary {
+            border: 2px solid #851720;
+            border-radius: 8px;
+            padding: 10px;
+        }
+
+        .form-label-primary {
+            color: #851720;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .form-small-primary {
+            color: #851720;
+        }
+
+        .form-check-input {
+            accent-color: #851720;
+        }
+
+        /* BUTTONS */
+        .btn-primary-flora {
+            background-color: #851720;
+            color: #ffcbde;
+            font-weight: 600;
+            padding: 10px;
+        }
+
+        .btn-primary-flora:hover {
+            background-color: #6b1218;
+            color: #ffcbde;
+        }
+
+        .btn-secondary-flora {
+            background-color: #ffcbde;
+            color: #851720;
+            font-weight: 600;
+            border: 2px solid #851720;
+        }
+
+        /* AUTH TABS */
+        .tab-active {
+            background-color: #851720 !important;
+            color: #ffcbde !important;
+        }
+
+        .tab-inactive {
+            background-color: #ffcbde !important;
+            color: #851720 !important;
+            border: 2px solid #851720 !important;
+        }
+
+        /* USER PROFILE */
+        .profile-info-box {
+            background-color: #fff1f6;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .profile-info-box p {
+            color: #851720;
+            margin: 5px 0;
+        }
+
+        /* CART & CHECKOUT */
+        .cart-item {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cart-item-name {
+            margin: 0;
+            color: #851720;
+            font-weight: 500;
+        }
+
+        .cart-item-price {
+            margin: 5px 0 0 0;
+            color: #851720;
+            font-weight: bold;
+        }
+
+        .cart-remove-btn {
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .price-summary {
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+        }
+
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .price-row span,
+        .price-row h5 {
+            color: #851720;
+        }
+
+        .price-row-total {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+        }
+
+        .price-row-total h5 {
+            color: #851720;
+            font-weight: bold;
+            margin: 0;
+        }
+
+        /* CARD DETAILS */
+        .card-details-box {
+            background-color: #fff9e6;
+            border: 1px solid #851720;
+            border-radius: 8px;
+            padding: 15px;
+        }
+
+        .card-details-box .form-control {
+            border: 1px solid #851720;
+            border-radius: 5px;
+            padding: 8px;
+        }
+
+        /* SEARCH MODAL */
+        .popular-searches {
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        .popular-searches h6 {
+            color: #851720;
+            font-weight: bold;
+            margin-bottom: 12px;
+        }
+
+        .search-tag {
+            background-color: #ffcbde;
+            color: #851720;
+            border: 1px solid #851720;
+            border-radius: 20px;
+            font-weight: 500;
+        }
+
+        .search-input {
+            border: 2px solid #851720;
+            border-radius: 8px;
+            padding: 12px;
+            font-size: 16px;
+        }
+
+        /* ORDER SUMMARY */
+        .order-summary-box {
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+        }
+
+        .order-summary-box p {
+            color: #851720;
+            margin: 0;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .order-summary-box h4 {
+            color: #851720;
+            font-weight: bold;
+            margin: 0;
+        }
+
+        /* SECTION DIVIDER */
+        .section-divider {
+            color: #851720;
+            font-weight: bold;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #851720;
+            padding-bottom: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .icon-text {
+                display: none;
+            }
+
+            .navbar-nav {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body class="en">
+
+<!-- HEADER + NAVBAR -->
+<div class="top-bar">
+    <header class="site-header container-fluid">
+        <div class="row align-items-center">
+            <!-- LEFT: Language -->
+            <div class="col-md-4">
+                <div class="language-switch">
+                    <span class="lang active" id="langEN" onclick="switchLanguage('EN')">EN</span>
+                    <span class="lang" id="langAR" onclick="switchLanguage('AR')">العربية</span>
+                </div>
+            </div>
+
+            <!-- CENTER: Logo -->
+            <div class="col-md-4 text-center">
+                <h2 style="margin: 0; display: flex; justify-content: center; align-items: center;">
+                    <a href="index.html" class="logo-link">
+                        <img src="imgs/Red Simple Flowers Shop Logo.png" alt="FLORA Logo" class="logo-img">
+                    </a>
+                </h2>
+            </div>
+
+            <!-- RIGHT: Icons -->
+            <div class="col-md-4">
+                <div class="header-icons">
+                    <div class="icon-container" data-bs-toggle="modal" data-bs-target="#searchModal">
+                        <i class="bi bi-search"></i>
+                        <span class="icon-text" data-en="Search" data-ar="بحث">Search</span>
+                    </div>
+
+                    <!-- ACCOUNT ICON -->
+                    <div id="accountContainer" onclick="openAccountModal()" class="icon-container">
+                        <i id="accountIcon" class="bi bi-person"></i>
+                        <span id="accountText" class="icon-text" data-en="Account" data-ar="الحساب">Account</span>
+                    </div>
+
+                    <!-- USER AVATAR (Hidden until login) -->
+                    <div id="userAvatarContainer" class="user-avatar" style="display: none;" onclick="openAccountModal()" title="Click to view profile">
+                        <span id="userInitials"></span>
+                    </div>
+
+                    <div class="icon-container" onclick="openWishlistModal()">
+                        <i class="bi bi-heart"></i>
+                        <span class="icon-text" data-en="Wishlist" data-ar="قائمة الأمنيات">Wishlist</span>
+                    </div>
+
+                    <div class="icon-container cart-wrapper" onclick="openCartModal()">
+                        <i class="bi bi-cart"></i>
+                        <span class="icon-text" data-en="Cart" data-ar="سلة التسوق">Cart</span>
+                        <span id="cartBadge" class="cart-badge">0</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- NAVBAR -->
+        <nav class="navbar navbar-expand-lg navbar-light main-navbar">
+            <div class="container-fluid">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html" data-en="Home" data-ar="الرئيسية">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="shop.html" data-en="Shop" data-ar="المتجر">Shop</a></li>
+                    <li class="nav-item"><a class="nav-link" href="bouquet.html" data-en="Build Bouquet" data-ar="بناء باقة">Build Bouquet</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html" data-en="About" data-ar="من نحن">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html" data-en="Contact" data-ar="اتصل بنا">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+</div>
+
+<!-- SEARCH MODAL -->
+<div class="modal fade" id="searchModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header modal-header-primary">
+                <h5 class="modal-title" data-en="Search Flowers" data-ar="البحث عن الزهور">Search Flowers</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" title="Close"></button>
+            </div>
+            <div class="modal-body" style="padding: 30px;">
+                <div class="mb-3">
+                    <label for="searchInput" style="color: #851720; font-weight: bold; display: block; margin-bottom: 10px;" data-en="Search for flowers, occasions, or arrangements" data-ar="ابحث عن الزهور أو المناسبات أو الترتيبات">Search for flowers, occasions, or arrangements</label>
+                    <input type="text" class="form-control" id="searchInput" placeholder="e.g., roses, birthday, wedding..." style="border: 2px solid #851720; border-radius: 8px; padding: 12px; font-size: 16px;" onkeypress="handleSearchKeypress(event)">
+                </div>
+
+                <div style="background-color: #f9f9f9; border: 1px solid #ddd; border-radius: 8px; padding: 15px; margin-bottom: 20px;">
+                    <h6 style="color: #851720; font-weight: bold; margin-bottom: 12px;" data-en="Popular Searches:" data-ar="البحث الشهير:">Popular Searches:</h6>
+                    <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+                        <button onclick="performSearch('roses')" class="btn btn-sm" style="background-color: #ffcbde; color: #851720; border: 1px solid #851720; border-radius: 20px; font-weight: 500;">🌹 Roses</button>
+                        <button onclick="performSearch('birthday')" class="btn btn-sm" style="background-color: #ffcbde; color: #851720; border: 1px solid #851720; border-radius: 20px; font-weight: 500;">🎂 Birthday</button>
+                        <button onclick="performSearch('wedding')" class="btn btn-sm" style="background-color: #ffcbde; color: #851720; border: 1px solid #851720; border-radius: 20px; font-weight: 500;">💒 Wedding</button>
+                        <button onclick="performSearch('anniversary')" class="btn btn-sm" style="background-color: #ffcbde; color: #851720; border: 1px solid #851720; border-radius: 20px; font-weight: 500;">💕 Anniversary</button>
+                        <button onclick="performSearch('valentines')" class="btn btn-sm" style="background-color: #ffcbde; color: #851720; border: 1px solid #851720; border-radius: 20px; font-weight: 500;">❤️ Valentines</button>
+                        <button onclick="performSearch('newborn')" class="btn btn-sm" style="background-color: #ffcbde; color: #851720; border: 1px solid #851720; border-radius: 20px; font-weight: 500;">👶 New Born</button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer" style="border-top: 1px solid #ddd; padding: 20px;">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-en="Close" data-ar="إغلاق">Close</button>
+                <button onclick="searchFromModal()" class="btn" style="background-color: #851720; color: #ffcbde; font-weight: 600;" data-en="Search" data-ar="بحث">
+                    <i class="bi bi-search"></i> Search
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- HOME -->
+<div class="container mt-5">
+    <h1 class="text-center" style="color: #851720; font-style: italic; font-family: 'Times New Roman', Times, serif; font-size: 48px; font-weight: bold;" data-en="Welcome to FLORA" data-ar="أهلا بك في فلورا">Welcome to FLORA</h1>
+    <p class="text-center" style="color: #851720; font-family: 'Times New Roman', Times, serif; font-size: 18px; margin-top: 10px;" data-en="Discover the beauty of fresh flowers for every occasion" data-ar="اكتشف جمال الزهور الطازجة لكل مناسبة">Discover the beauty of fresh flowers for every occasion</p>
+</div>
+
+<!-- CATEGORIES - LINKED TO SHOP PAGE -->
+<div class="container text-center mt-5">
+    <h2 class="section-title section-title-left" data-en="Gifts for Every Moment" data-ar="هدايا لكل لحظة">Gifts for Every Moment</h2>
+    <div class="row justify-content-center" style="color: #851720; font-family: 'Times New Roman', Times, serif;">
+
+        <div class="col-6 col-md-2 category" style="cursor: pointer; transition: transform 0.3s ease;">
+            <a href="shop.html?category=birthday" style="text-decoration: none; color: inherit;">
+                <img src="imgs/IMG_birthday.png" alt="Birthday" style="width: 100px; height: 100px; border-color: #851720; border: 2px solid; border-radius: 50%; object-fit: cover;">
+                <p style="margin-top: 15px; font-weight: 500;" data-en="Birthday" data-ar="عيد ميلاد">Birthday</p>
+            </a>
+        </div>
+
+        <div class="col-6 col-md-2 category">
+            <a href="shop.html?category=newborn">
+                <img src="imgs/IMG_newborn.png" alt="New Born" class="category-img">
+                <p data-en="New Born" data-ar="مولود جديد">New Born</p>
+            </a>
+        </div>
+
+        <div class="col-6 col-md-2 category">
+            <a href="shop.html?category=anniversary">
+                <img src="imgs/IMG_anniv.png" alt="Anniversary" class="category-img">
+                <p data-en="Anniversary" data-ar="ذكرى سنوية">Anniversary</p>
+            </a>
+        </div>
+
+        <div class="col-6 col-md-2 category">
+            <a href="shop.html?category=valentines">
+                <img src="imgs/IMG_val.png" alt="Valentines" class="category-img">
+                <p data-en="Valentines" data-ar="يوم الحب">Valentines</p>
+            </a>
+        </div>
+
+        <div class="col-6 col-md-2 category">
+            <a href="shop.html?category=wedding">
+                <img src="imgs/IMG_wedding.png" alt="Wedding" class="category-img">
+                <p data-en="Wedding" data-ar="زفاف">Wedding</p>
+            </a>
+        </div>
+
+        <div class="col-6 col-md-2 category">
+            <a href="shop.html?category=graduation">
+                <img src="imgs/IMG_grad.png" alt="Graduation" class="category-img">
+                <p data-en="Graduation" data-ar="التخرج">Graduation</p>
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- PROMOTIONS -->
+<div class="container mt-5">
+    <h2 class="section-title" data-en="Special Offers" data-ar="عروض خاصة">Special Offers</h2>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="promo-card text-center p-4">
+                <img src="imgs/IMG_discount.png" alt="Discount" class="promo-img">
+                <h5 data-en="20% Off Bouquets" data-ar="خصم 20% على الباقات">20% Off Bouquets</h5>
+                <p><strong data-en="Use code:" data-ar="استخدم الكود:">Use code:</strong> <strong>FLOWER20</strong></p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="promo-card text-center p-4">
+                <img src="imgs/IMG_delivery.png" alt="Free Delivery" class="promo-img">
+                <h5 data-en="Free Delivery" data-ar="توصيل مجاني">Free Delivery</h5>
+                <p data-en="On orders above 25 OMR" data-ar="على الطلبات فوق 25 ريال عماني">On orders above 25 OMR</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="promo-card text-center p-4">
+                <img src="imgs/IMG_buy2get1.png" alt="Buy 2 Get 1" class="promo-img">
+                <h5 data-en="Buy 2 Get 1" data-ar="اشتر 2 واحصل على 1">Buy 2 Get 1</h5>
+                <p data-en="Selected flowers only" data-ar="الزهور المختارة فقط">Selected flowers only</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- FEATURED PRODUCTS -->
+<div class="container mt-5 featured-section">
+    <h2 class="section-title mb-4" data-en="Featured Products" data-ar="المنتجات المميزة">Featured Products</h2>
+    <div class="row text-center" style="font-family: 'Times New Roman', Times, serif;">
+
+        <div class="col-md-3">
+            <img src="imgs/IMG_100pink.JPG" alt="100 Pink Roses" class="product-img">
+            <p class="product-name">100 Pink Roses</p>
+            <p class="product-price">50 OMR</p>
+            <button onclick="addToCart(1, '100 Pink Roses', 50)" class="btn-add-cart" data-en="Add to Cart" data-ar="أضف إلى السلة">Add to Cart</button>
+        </div>
+
+        <div class="col-md-3">
+            <img src="imgs/Dreams Bouquet.png" alt="Dreams Bouquet" class="product-img">
+            <p class="product-name">Dreams Bouquet</p>
+            <p class="product-price">20 OMR</p>
+            <button onclick="addToCart(2, 'Dreams Bouquet', 20)" class="btn-add-cart" data-en="Add to Cart" data-ar="أضف إلى السلة">Add to Cart</button>
+        </div>
+
+        <div class="col-md-3">
+            <img src="imgs/floral.png" alt="Floral Embrace" class="product-img">
+            <p class="product-name">Floral Embrace</p>
+            <p class="product-price">35 OMR</p>
+            <button onclick="addToCart(3, 'Floral Embrace', 35)" class="btn-add-cart" data-en="Add to Cart" data-ar="أضف إلى السلة">Add to Cart</button>
+        </div>
+
+        <div class="col-md-3">
+            <img src="imgs/infinity flower.jpeg" alt="infinity rose" class="product-img">
+            <p class="product-name">♾️ Infinity Rose</p>
+            <p class="product-price">40 OMR</p>
+            <button onclick="addToCart(4, '♾️infinity rose', 40)" class="btn-add-cart" data-en="Add to Cart" data-ar="أضف إلى السلة">Add to Cart</button>
+        </div>
+    </div>
+</div>
+
+<!-- REVIEWS -->
+<div class="container mt-5 mb-5">
+    <h2 class="section-title" data-en="Customer Reviews" data-ar="تقييمات العملاء">Customer Reviews</h2>
+    <div class="row">
+
+        <div class="col-md-4">
+            <div class="review-card p-4 text-center">
+                <i class="bi bi-star-fill star-icon"></i>
+                <i class="bi bi-star-fill star-icon"></i>
+                <i class="bi bi-star-fill star-icon"></i>
+                <i class="bi bi-star-fill star-icon"></i>
+                <i class="bi bi-star-fill star-icon"></i>
+                <p data-en="Amazing flowers and fast delivery!" data-ar="زهور رائعة وتوصيل سريع!">Amazing flowers and fast delivery!</p>
+                <h6><span data-en="– Aisha" data-ar="– عائشة">– Aisha</span></h6>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="review-card p-4 text-center">
+                <i class="bi bi-star-fill star-icon"></i>
+                <i class="bi bi-star-fill star-icon"></i>
+                <i class="bi bi-star-fill star-icon"></i>
+                <i class="bi bi-star-fill star-icon"></i>
+                <i class="bi bi-star-fill star-icon"></i>
+                <p data-en="Very beautiful 😍 I loved the bouquet!" data-ar="جميلة جداً 😍 أحببت الباقة!">Very beautiful 😍 I loved the bouquet!</p>
+                <h6><span data-en="– Fatma" data-ar="– فاطمة">– Fatma</span></h6>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="review-card p-4 text-center">
+                <i class="bi bi-star-fill star-icon"></i>
+                <i class="bi bi-star-fill star-icon"></i>
+                <i class="bi bi-star-fill star-icon"></i>
+                <i class="bi bi-star-fill star-icon"></i>
+                <i class="bi bi-star-fill star-icon"></i>
+                <p data-en="Great service and quality flowers." data-ar="خدمة رائعة وزهور عالية الجودة.">Great service and quality flowers.</p>
+                <h6><span data-en="– Ahmed" data-ar="– أحمد">– Ahmed</span></h6>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-md-3 mb-4">
+                <h4>FLORA</h4>
+                <p>Flower Shop</p>
+            </div>
+            <div class="col-md-3 mb-4">
+                <h5 data-en="Social Media" data-ar="وسائل التواصل الاجتماعي">Social Media</h5>
+                <div class="footer-social">
+                    <a href="#" aria-label="Facebook" title="Facebook"><i class="bi bi-facebook"></i></a>
+                    <a href="#" aria-label="Instagram" title="Instagram"><i class="bi bi-instagram"></i></a>
+                    <a href="#" style="font-weight: bold;" aria-label="X" title="X">X</a>
+                </div>
+            </div>
+            <div class="col-md-3 mb-4">
+                <h5 data-en="Policies" data-ar="السياسات">Policies</h5>
+                <ul class="footer-policies">
+                    <li onclick="openPolicyModal('delivery')" data-en="Delivery Policy" data-ar="سياسة التسليم">Delivery Policy</li>
+                    <li onclick="openPolicyModal('return')" data-en="Return Policy" data-ar="سياسة الإرجاع">Return Policy</li>
+                </ul>
+            </div>
+            <div class="col-md-3 mb-4">
+                <h5 data-en="Contact" data-ar="اتصل بنا">Contact</h5>
+                <p><i class="bi bi-telephone"></i> <a href="tel:+96890000000">+968 90000000</a></p>
+                <p><i class="bi bi-envelope"></i> <a href="mailto:info@florashop.com">info@florashop.com</a></p>
+                <p><i class="bi bi-geo-alt"></i> Muscat, Oman</p>
+            </div>
+        </div>
+        <hr class="footer-divider">
+        <div class="row text-center mt-4">
+            <div class="col-12">
+                <p class="footer-copy" data-en="&copy; 2026 FLORA Flower Shop. All rights reserved." data-ar="&copy; 2026 متجر فلورا للزهور. جميع الحقوق محفوظة.">&copy; 2026 FLORA Flower Shop. All rights reserved.</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- ACCOUNT MODAL -->
+<div class="modal fade" id="accountModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header modal-header-primary">
+                <h5 class="modal-title" id="modalTitle" data-en="Account" data-ar="الحساب">Account</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" title="Close"></button>
+            </div>
+            <div class="modal-body" style="padding: 40px;">
+
+                <!-- USER PROFILE -->
+                <div id="userProfile" style="display: none; text-align: center;">
+                    <div class="user-avatar user-avatar-lg">
+                        <span id="profileInitials"></span>
+                    </div>
+                    <h4 style="color: #851720; margin-bottom: 10px;" id="profileName"></h4>
+                    <p style="color: #851720; margin-bottom: 20px;" id="profileEmail"></p>
+                    <div class="profile-info-box">
+                        <p><strong data-en="Username:" data-ar="اسم المستخدم:">Username:</strong> <span id="profileUsername"></span></p>
+                        <p><strong data-en="Phone:" data-ar="الهاتف:">Phone:</strong> <span id="profilePhone"></span></p>
+                        <p><strong data-en="Email:" data-ar="البريد الإلكتروني:">Email:</strong> <span id="profileEmailDetail"></span></p>
+                    </div>
+                    <button onclick="displayUserOrders()" class="btn btn-primary-flora w-100 mt-3" data-en="View My Orders" data-ar="عرض طلباتي">View My Orders</button>
+                    <button onclick="logout()" class="btn btn-primary-flora w-100 mt-2" data-en="Logout" data-ar="تسجيل الخروج">Logout</button>
+                </div>
+
+                <!-- LOGIN/SIGNUP TABS -->
+                <div id="authForms">
+                    <div style="display: flex; gap: 10px; margin-bottom: 30px;">
+                        <button onclick="switchTab('login')" id="loginTab" class="btn w-50 tab-active" data-en="Login" data-ar="تسجيل الدخول">Login</button>
+                        <button onclick="switchTab('signup')" id="signupTab" class="btn w-50 tab-inactive" data-en="Sign Up" data-ar="إنشاء حساب">Sign Up</button>
+                    </div>
+
+                    <!-- LOGIN FORM -->
+                    <div id="loginForm">
+                        <form id="loginFormElement">
+                            <div class="mb-3">
+                                <label for="loginUsername" class="form-label-primary" data-en="Username or Email *" data-ar="اسم المستخدم أو البريد الإلكتروني *">Username or Email *</label>
+                                <input type="text" class="form-control form-input-primary" id="loginUsername" placeholder="Enter username or email" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="loginPassword" class="form-label-primary" data-en="Password *" data-ar="كلمة المرور *">Password *</label>
+                                <input type="password" class="form-control form-input-primary" id="loginPassword" placeholder="Enter password" required>
+                            </div>
+                            <div class="form-check mb-3">
+                                <input class="form-check-input" type="checkbox" id="rememberMe">
+                                <label class="form-check-label" for="rememberMe" style="color: #851720;" data-en="Remember me" data-ar="تذكرني">Remember me</label>
+                            </div>
+                            <button type="submit" class="btn btn-primary-flora w-100" data-en="Login" data-ar="تسجيل الدخول">Login</button>
+                        </form>
+                    </div>
+
+                    <!-- SIGNUP FORM -->
+                    <div id="signupForm" style="display: none;">
+                        <form id="signupFormElement">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="firstName" class="form-label-primary" data-en="First Name *" data-ar="الاسم الأول *">First Name *</label>
+                                    <input type="text" class="form-control form-input-primary" id="firstName" placeholder="First name" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="lastName" class="form-label-primary" data-en="Last Name *" data-ar="اسم العائلة *">Last Name *</label>
+                                    <input type="text" class="form-control form-input-primary" id="lastName" placeholder="Last name" required>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="signupUsername" class="form-label-primary" data-en="Username *" data-ar="اسم المستخدم *">Username *</label>
+                                <input type="text" class="form-control form-input-primary" id="signupUsername" placeholder="Create username" required>
+                                <small class="form-small-primary" data-en="Minimum 4 characters" data-ar="4 أحرف على الأقل">Minimum 4 characters</small>
+                            </div>
+                            <div class="mb-3">
+                                <label for="signupEmail" class="form-label-primary" data-en="Email *" data-ar="البريد الإلكتروني *">Email *</label>
+                                <input type="email" class="form-control form-input-primary" id="signupEmail" placeholder="example@email.com" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="signupPhone" class="form-label-primary" data-en="Phone Number *" data-ar="رقم الهاتف *">Phone Number *</label>
+                                <input type="tel" class="form-control form-input-primary" id="signupPhone" placeholder="+968 90000000" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="signupPassword" class="form-label-primary" data-en="Password *" data-ar="كلمة المرور *">Password *</label>
+                                <input type="password" class="form-control form-input-primary" id="signupPassword" placeholder="Create password" required>
+                                <small class="form-small-primary" data-en="Minimum 6 characters" data-ar="6 أحرف على الأقل">Minimum 6 characters</small>
+                            </div>
+                            <div class="mb-3">
+                                <label for="confirmPassword" class="form-label-primary" data-en="Confirm Password *" data-ar="تأكيد كلمة المرور *">Confirm Password *</label>
+                                <input type="password" class="form-control form-input-primary" id="confirmPassword" placeholder="Confirm password" required>
+                            </div>
+                            <div class="form-check mb-3">
+                                <input class="form-check-input" type="checkbox" id="agreeTerms" required>
+                                <label class="form-check-label" for="agreeTerms" style="color: #851720;" data-en="I agree to terms and conditions" data-ar="أوافق على الشروط والأحكام">I agree to terms and conditions</label>
+                            </div>
+                            <button type="submit" class="btn btn-primary-flora w-100" data-en="Create Account" data-ar="إنشاء حساب">Create Account</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- CART MODAL -->
+<div class="modal fade" id="cartModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header modal-header-primary">
+                <h5 class="modal-title" data-en="Shopping Cart" data-ar="سلة التسوق">Shopping Cart</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" title="Close"></button>
+            </div>
+            <div class="modal-body" style="padding: 30px;">
+                <div id="cartItemsList" style="max-height: 400px; overflow-y: auto; margin-bottom: 20px;"></div>
+                <hr>
+                <div class="price-summary">
+                    <div class="price-row">
+                        <span data-en="Subtotal:" data-ar="المجموع الفرعي:">Subtotal:</span>
+                        <span id="subtotalPrice" style="font-weight: bold;">0 OMR</span>
+                    </div>
+                    <div class="price-row">
+                        <span data-en="Delivery Fee:" data-ar="رسوم التوصيل:">Delivery Fee:</span>
+                        <span id="deliveryFee" style="font-weight: bold;">5 OMR</span>
+                    </div>
+                    <div class="price-row-total">
+                        <h5 data-en="Total:" data-ar="الإجمالي:">Total:</h5>
+                        <h5 id="cartTotal">0 OMR</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-en="Continue Shopping" data-ar="المتابعة في التسوق">Continue Shopping</button>
+                <button onclick="goToCheckout()" class="btn btn-primary-flora" data-en="Proceed to Checkout" data-ar="المتابعة إلى الدفع">Proceed to Checkout</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- CHECKOUT MODAL -->
+<div class="modal fade" id="checkoutModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header modal-header-primary">
+                <h5 class="modal-title" data-en="Checkout" data-ar="الدفع">Checkout</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" title="Close"></button>
+            </div>
+            <div class="modal-body" style="padding: 30px;">
+
+                <h6 class="section-divider" data-en="📍 Delivery Address" data-ar="📍 عنوان التسليم">📍 Delivery Address</h6>
+
+                <div class="mb-3">
+                    <label for="deliveryName" class="form-label-primary" data-en="Recipient Name *" data-ar="اسم المستقبل *">Recipient Name *</label>
+                    <input type="text" class="form-control form-input-primary" id="deliveryName" placeholder="Enter recipient name" required>
+                </div>
+                <div class="mb-3">
+                    <label for="deliveryPhone" class="form-label-primary" data-en="Recipient Phone *" data-ar="هاتف المستقبل *">Recipient Phone *</label>
+                    <input type="tel" class="form-control form-input-primary" id="deliveryPhone" placeholder="+968 90000000" required>
+                </div>
+                <div class="mb-3">
+                    <label for="deliveryAddress" class="form-label-primary" data-en="Street Address *" data-ar="عنوان الشارع *">Street Address *</label>
+                    <input type="text" class="form-control form-input-primary" id="deliveryAddress" placeholder="Enter street address" required>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="deliveryCity" class="form-label-primary" data-en="City *" data-ar="المدينة *">City *</label>
+                        <input type="text" class="form-control form-input-primary" id="deliveryCity" placeholder="Muscat" required>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="deliveryPostal" class="form-label-primary" data-en="Postal Code *" data-ar="الرمز البريدي *">Postal Code *</label>
+                        <input type="text" class="form-control form-input-primary" id="deliveryPostal" placeholder="e.g., 100" required>
+                    </div>
+                </div>
+
+                <hr>
+
+                <h6 class="section-divider" data-en="💳 Payment Method" data-ar="💳 طريقة الدفع">💳 Payment Method</h6>
+
+                <div class="mb-3">
+                    <div class="form-check mb-3">
+                        <input class="form-check-input" type="radio" name="paymentMethod" id="creditCard" value="creditCard" checked onchange="toggleCardDetails()">
+                        <label class="form-check-label" for="creditCard" style="color: #851720; font-weight: 500;" data-en="Credit/Debit Card" data-ar="بطاقة ائتمان/خصم">Credit/Debit Card</label>
+                    </div>
+                    <div class="form-check mb-3">
+                        <input class="form-check-input" type="radio" name="paymentMethod" id="bankTransfer" value="bankTransfer" onchange="toggleCardDetails()">
+                        <label class="form-check-label" for="bankTransfer" style="color: #851720; font-weight: 500;" data-en="Bank Transfer" data-ar="تحويل بنكي">Bank Transfer</label>
+                    </div>
+                    <div class="form-check mb-3">
+                        <input class="form-check-input" type="radio" name="paymentMethod" id="cashOnDelivery" value="cashOnDelivery" onchange="toggleCardDetails()">
+                        <label class="form-check-label" for="cashOnDelivery" style="color: #851720; font-weight: 500;" data-en="Cash on Delivery" data-ar="الدفع عند التسليم">Cash on Delivery</label>
+                    </div>
+                </div>
+
+                <div id="cardDetails" class="card-details-box">
+                    <div class="mb-3">
+                        <label for="cardName" class="form-label-primary" data-en="Cardholder Name *" data-ar="اسم صاحب البطاقة *">Cardholder Name *</label>
+                        <input type="text" class="form-control" id="cardName" placeholder="John Doe">
+                    </div>
+                    <div class="mb-3">
+                        <label for="cardNumber" class="form-label-primary" data-en="Card Number *" data-ar="رقم البطاقة *">Card Number *</label>
+                        <input type="text" class="form-control" id="cardNumber" placeholder="1234 5678 9012 3456" maxlength="19">
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="cardExpiry" class="form-label-primary" data-en="Expiry Date *" data-ar="تاريخ الانتهاء *">Expiry Date *</label>
+                            <input type="text" class="form-control" id="cardExpiry" placeholder="MM/YY" maxlength="5">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="cardCVV" class="form-label-primary" data-en="CVV *" data-ar="CVV *">CVV *</label>
+                            <input type="text" class="form-control" id="cardCVV" placeholder="123" maxlength="3">
+                        </div>
+                    </div>
+                </div>
+
+                <hr>
+
+                <div class="order-summary-box">
+                    <p data-en="Order Total:" data-ar="إجمالي الطلب:">Order Total:</p>
+                    <h4 id="checkoutTotal">0 OMR</h4>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-en="Back to Cart" data-ar="العودة إلى السلة">Back to Cart</button>
+                <button onclick="placeOrder()" class="btn btn-primary-flora" data-en="Place Order" data-ar="تقديم الطلب">Place Order</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    let cart = [];
+    let currentLanguage = 'EN';
+    let users = JSON.parse(localStorage.getItem('floraUsers')) || [];
+    let currentUser = JSON.parse(localStorage.getItem('currentUser')) || null;
+
+    document.addEventListener('DOMContentLoaded', function() {
+        // Login form submission
+        document.getElementById('loginFormElement').addEventListener('submit', function(e) {
+            e.preventDefault();
+            handleLogin();
+        });
+
+        // Signup form submission
+        document.getElementById('signupFormElement').addEventListener('submit', function(e) {
+            e.preventDefault();
+            handleSignup();
+        });
+
+        // Update UI based on login status
+        updateAccountUI();
+        loadCart();
+        updateCartBadge();
+    });
+
+    function loadCart() {
+        const savedCart = localStorage.getItem('floraCart');
+        if (savedCart) {
+            cart = JSON.parse(savedCart);
+        }
+    }
+
+    function saveCart() {
+        localStorage.setItem('floraCart', JSON.stringify(cart));
+    }
+
+    function updateAccountUI() {
+        const accountContainer = document.getElementById('accountContainer');
+        const userAvatarContainer = document.getElementById('userAvatarContainer');
+        const authForms = document.getElementById('authForms');
+        const userProfile = document.getElementById('userProfile');
+
+        if (currentUser) {
+            accountContainer.style.display = 'none';
+            userAvatarContainer.style.display = 'flex';
+            
+            const initials = currentUser.firstName.charAt(0) + currentUser.lastName.charAt(0);
+            document.getElementById('userInitials').textContent = initials.toUpperCase();
+            document.getElementById('profileInitials').textContent = initials.toUpperCase();
+            
+            document.getElementById('profileName').textContent = `${currentUser.firstName} ${currentUser.lastName}`;
+            document.getElementById('profileEmail').textContent = currentUser.email;
+            document.getElementById('profileUsername').textContent = currentUser.username;
+            document.getElementById('profilePhone').textContent = currentUser.phone;
+            document.getElementById('profileEmailDetail').textContent = currentUser.email;
+            
+            authForms.style.display = 'none';
+            userProfile.style.display = 'block';
+        } else {
+            accountContainer.style.display = 'flex';
+            userAvatarContainer.style.display = 'none';
+            authForms.style.display = 'block';
+            userProfile.style.display = 'none';
+        }
+    }
+
+    function switchLanguage(lang) {
+        currentLanguage = lang;
+        const langEN = document.getElementById('langEN');
+        const langAR = document.getElementById('langAR');
+        const body = document.body;
+
+        if (lang === 'EN') {
+            langEN.style.backgroundColor = '#851720';
+            langEN.style.color = '#fff';
+            langAR.style.backgroundColor = '#ffcbde';
+            langAR.style.color = '#851720';
+            body.classList.remove('ar');
+            body.classList.add('en');
+        } else {
+            langAR.style.backgroundColor = '#851720';
+            langAR.style.color = '#fff';
+            langEN.style.backgroundColor = '#ffcbde';
+            langEN.style.color = '#851720';
+            body.classList.remove('en');
+            body.classList.add('ar');
+        }
+
+        updateLanguage(lang);
+    }
+
+    function updateLanguage(lang) {
+        const elements = document.querySelectorAll('[data-en][data-ar]');
+        elements.forEach(el => {
+            if (lang === 'EN') {
+                el.textContent = el.getAttribute('data-en');
+            } else {
+                el.textContent = el.getAttribute('data-ar');
+            }
+        });
+    }
+
+    function switchTab(tab) {
+        const loginForm = document.getElementById('loginForm');
+        const signupForm = document.getElementById('signupForm');
+        const loginTab = document.getElementById('loginTab');
+        const signupTab = document.getElementById('signupTab');
+
+    if (tab === 'login') {
+        loginForm.style.display = 'block';
+        signupForm.style.display = 'none';
+        loginTab.style.backgroundColor = '#851720';
+        loginTab.style.color = '#ffcbde';
+        signupTab.style.backgroundColor = '#ffcbde';
+        signupTab.style.color = '#851720';
+        signupTab.style.border = '2px solid #851720';
+    } else {
+        loginForm.style.display = 'none';
+        signupForm.style.display = 'block';
+        signupTab.style.backgroundColor = '#851720';
+        signupTab.style.color = '#ffcbde';
+        loginTab.style.backgroundColor = '#ffcbde';
+        loginTab.style.color = '#851720';
+        loginTab.style.border = '2px solid #851720';
+    }
+}
+
+    function handleLogin() {
+        const usernameOrEmail = document.getElementById('loginUsername').value.trim();
+        const password = document.getElementById('loginPassword').value;
+
+        if (!usernameOrEmail || !password) {
+            alert(currentLanguage === 'EN' ? 'Please fill in all fields' : 'يرجى ملء جميع الحقول');
+            return;
+        }
+
+        const user = users.find(u => (u.username === usernameOrEmail || u.email === usernameOrEmail) && u.password === password);
+
+        if (user) {
+            currentUser = user;
+            localStorage.setItem('currentUser', JSON.stringify(user));
+            alert(currentLanguage === 'EN' ? `Welcome back, ${user.firstName}!` : `مرحباً بعودتك، ${user.firstName}!`);
+            updateAccountUI();
+            bootstrap.Modal.getInstance(document.getElementById('accountModal')).hide();
+            document.getElementById('loginFormElement').reset();
+        } else {
+            alert(currentLanguage === 'EN' ? 'Invalid username/email or password' : 'اسم مستخدم/بريد إلكتروني أو كلمة مرور غير صحيح');
+        }
+    }
+
+    function handleSignup() {
+        const firstName = document.getElementById('firstName').value.trim();
+        const lastName = document.getElementById('lastName').value.trim();
+        const username = document.getElementById('signupUsername').value.trim();
+        const email = document.getElementById('signupEmail').value.trim();
+        const phone = document.getElementById('signupPhone').value.trim();
+        const password = document.getElementById('signupPassword').value;
+        const confirmPassword = document.getElementById('confirmPassword').value;
+        const agreeTerms = document.getElementById('agreeTerms').checked;
+
+        if (!firstName || !lastName || !username || !email || !phone || !password || !confirmPassword) {
+            alert(currentLanguage === 'EN' ? 'Please fill in all fields' : 'يرجى ملء جميع الحقول');
+            return;
+        }
+
+        if (username.length < 4) {
+            alert(currentLanguage === 'EN' ? 'Username must be at least 4 characters' : 'يجب أن يكون اسم المستخدم 4 أحرف على الأقل');
+            return;
+        }
+
+        if (password.length < 6) {
+            alert(currentLanguage === 'EN' ? 'Password must be at least 6 characters' : 'يجب أن تكون كلمة المرور 6 أحرف على الأقل');
+            return;
+        }
+
+        if (password !== confirmPassword) {
+            alert(currentLanguage === 'EN' ? 'Passwords do not match' : 'كلمات المرور غير متطابقة');
+            return;
+        }
+
+        if (!agreeTerms) {
+            alert(currentLanguage === 'EN' ? 'You must agree to terms and conditions' : 'يجب أن توافق على الشروط والأحكام');
+            return;
+        }
+
+        if (users.find(u => u.username === username)) {
+            alert(currentLanguage === 'EN' ? 'Username already exists' : 'اسم المستخدم موجود بالفعل');
+            return;
+        }
+
+        if (users.find(u => u.email === email)) {
+            alert(currentLanguage === 'EN' ? 'Email already exists' : 'البريد الإلكتروني موجود بالفعل');
+            return;
+        }
+
+        const newUser = {
+            firstName,
+            lastName,
+            username,
+            email,
+            phone,
+            password
+        };
+
+        users.push(newUser);
+        localStorage.setItem('floraUsers', JSON.stringify(users));
+        
+        currentUser = newUser;
+        localStorage.setItem('currentUser', JSON.stringify(newUser));
+
+        alert(currentLanguage === 'EN' ? 
+            `Welcome, ${firstName}! Your account has been created.` : 
+            `مرحباً، ${firstName}! تم إنشاء حسابك.`);
+        
+        updateAccountUI();
+        bootstrap.Modal.getInstance(document.getElementById('accountModal')).hide();
+        document.getElementById('signupFormElement').reset();
+        switchTab('login');
+    }
+
+    function logout() {
+        currentUser = null;
+        localStorage.removeItem('currentUser');
+        alert(currentLanguage === 'EN' ? 'You have been logged out' : 'تم تسجيل خروجك');
+        updateAccountUI();
+        bootstrap.Modal.getInstance(document.getElementById('accountModal')).hide();
+    }
+
+    function openAccountModal() {
+        new bootstrap.Modal(document.getElementById('accountModal')).show();
+    }
+
+    function handleSearchKeypress(event) {
+        if (event.key === 'Enter') {
+            searchFromModal();
+        }
+    }
+
+    function searchFromModal() {
+        const searchQuery = document.getElementById('searchInput').value.trim();
+        if (searchQuery) {
+            performSearch(searchQuery);
+        } else {
+            alert(currentLanguage === 'EN' ? 'Please enter a search term' : 'يرجى إدخال مصطلح البحث');
+        }
+    }
+
+    function performSearch(query) {
+        // Close modal if open
+        const modal = bootstrap.Modal.getInstance(document.getElementById('searchModal'));
+        if (modal) {
+            modal.hide();
+        }
+        
+        // Redirect to shop with search query
+        window.location.href = `shop.html?search=${encodeURIComponent(query)}`;
+    }
+
+    function openWishlistModal() {
+        alert(currentLanguage === 'EN' ? 'Wishlist is empty ❤️' : 'قائمة الأمنيات فارغة ❤️');
+    }
+
+    function addToCart(id, productName, price) {
+        cart.push({ id: id, name: productName, price: price });
+        saveCart();
+        updateCartBadge();
+        alert(currentLanguage === 'EN' ? `✅ ${productName} added to cart!` : `✅ تم إضافة ${productName} إلى السلة!`);
+    }
+
+    function updateCartBadge() {
+        document.getElementById('cartBadge').textContent = cart.length;
+    }
+
+    function openCartModal() {
+        displayCartItems();
+        new bootstrap.Modal(document.getElementById('cartModal')).show();
+    }
+
+    function displayCartItems() {
+        const list = document.getElementById('cartItemsList');
+        
+        if (cart.length === 0) {
+            list.innerHTML = '<p style="color: #851720; text-align: center;">Your cart is empty</p>';
+            updatePrices();
+            return;
+        }
+
+        list.innerHTML = cart.map((item, index) => `
+            <div style="background: #fff; border: 1px solid #ddd; border-radius: 8px; padding: 15px; margin-bottom: 15px; display: flex; justify-content: space-between; align-items: center;">
+                <div style="flex-grow: 1;">
+                    <p style="margin: 0; color: #851720; font-weight: 500;">${item.name}</p>
+                    <p style="margin: 5px 0 0 0; color: #851720; font-weight: bold;">${item.price} OMR</p>
+                </div>
+                <button onclick="removeFromCart(${index})" style="background: #dc3545; color: white; border: none; padding: 8px 12px; border-radius: 5px; cursor: pointer;">✕</button>
+            </div>
+        `).join('');
+
+        updatePrices();
+    }
+
+    function removeFromCart(index) {
+        cart.splice(index, 1);
+        saveCart();
+        updateCartBadge();
+        displayCartItems();
+    }
+
+    function updatePrices() {
+        const subtotal = cart.reduce((sum, item) => sum + item.price, 0);
+        const delivery = subtotal > 25 ? 0 : 5;
+        const total = subtotal + delivery;
+
+        document.getElementById('subtotalPrice').textContent = subtotal.toFixed(2) + ' OMR';
+        document.getElementById('deliveryFee').textContent = (delivery === 0 ? 'FREE' : delivery) + (delivery === 0 ? '' : ' OMR');
+        document.getElementById('cartTotal').textContent = total.toFixed(2) + ' OMR';
+    }
+
+    function goToCheckout() {
+        if (cart.length === 0) {
+            alert('Your cart is empty!');
+            return;
+        }
+        
+        const subtotal = cart.reduce((sum, item) => sum + item.price, 0);
+        const delivery = subtotal > 25 ? 0 : 5;
+        const total = subtotal + delivery;
+        
+        document.getElementById('checkoutTotal').textContent = total.toFixed(2) + ' OMR';
+        
+        bootstrap.Modal.getInstance(document.getElementById('cartModal')).hide();
+        new bootstrap.Modal(document.getElementById('checkoutModal')).show();
+    }
+
+    function toggleCardDetails() {
+        const details = document.getElementById('cardDetails');
+        const method = document.querySelector('input[name="paymentMethod"]:checked');
+        
+        if (method && details) {
+            details.style.display = method.value === 'creditCard' ? 'block' : 'none';
+        }
+    }
+
+    function placeOrder() {
+        const name = document.getElementById('deliveryName').value.trim();
+        const phone = document.getElementById('deliveryPhone').value.trim();
+        const address = document.getElementById('deliveryAddress').value.trim();
+        const city = document.getElementById('deliveryCity').value.trim();
+        const postal = document.getElementById('deliveryPostal').value.trim();
+
+        if (!name || !phone || !address || !city || !postal) {
+            alert('Please fill all delivery fields!');
+            return;
+        }
+
+        const method = document.querySelector('input[name="paymentMethod"]:checked');
+        if (!method) {
+            alert('Please select a payment method!');
+            return;
+        }
+
+        const subtotal = cart.reduce((sum, item) => sum + item.price, 0);
+        const delivery = subtotal > 25 ? 0 : 5;
+        const total = subtotal + delivery;
+
+        // Save order data
+        const orderData = {
+            deliveryName: name,
+            deliveryPhone: phone,
+            deliveryAddress: address,
+            deliveryCity: city,
+            deliveryPostal: postal,
+            paymentMethod: method.value
+        };
+
+        if (saveUserOrder(orderData)) {
+            alert(currentLanguage === 'EN' ? 
+                `✅ Order Confirmed!\n\nOrder ID: ORD-${Date.now()}\nTotal: ${total.toFixed(2)} OMR\nDelivery to: ${city}\n\nThank you for shopping with FLORA!` :
+                `✅ تم تأكيد الطلب!\n\nرقم الطلب: ORD-${Date.now()}\nالإجمالي: ${total.toFixed(2)} ريال عماني\nالتسليم إلى: ${city}\n\nشكراً لك على التسوق مع فلورا!`);
+            
+            cart = [];
+            saveCart();
+            updateCartBadge();
+            
+            document.getElementById('deliveryName').value = '';
+            document.getElementById('deliveryPhone').value = '';
+            document.getElementById('deliveryAddress').value = '';
+            document.getElementById('deliveryCity').value = '';
+            document.getElementById('deliveryPostal').value = '';
+            
+            bootstrap.Modal.getInstance(document.getElementById('checkoutModal')).hide();
+        }
+    }
+    // USER DATA & ORDER MANAGEMENT SYSTEM
+    function saveUserOrder(orderData) {
+        let userOrders = JSON.parse(localStorage.getItem('userOrders')) || {};
+        
+        if (!currentUser) {
+            alert(currentLanguage === 'EN' ? 'Please login to save orders' : 'يرجى تسجيل الدخول لحفظ الطلبات');
+            return false;
+        }
+        
+        const username = currentUser.username;
+        
+        // Create order object
+        const order = {
+            orderId: 'ORD-' + Date.now(),
+            date: new Date().toLocaleString(),
+            items: cart,
+            subtotal: cart.reduce((sum, item) => sum + item.price, 0),
+            delivery: cart.reduce((sum, item) => sum + item.price, 0) > 25 ? 0 : 5,
+            total: cart.reduce((sum, item) => sum + item.price, 0) + (cart.reduce((sum, item) => sum + item.price, 0) > 25 ? 0 : 5),
+            deliveryAddress: orderData.deliveryAddress,
+            deliveryPhone: orderData.deliveryPhone,
+            deliveryName: orderData.deliveryName,
+            deliveryCity: orderData.deliveryCity,
+            deliveryPostal: orderData.deliveryPostal,
+            paymentMethod: orderData.paymentMethod,
+            status: 'Confirmed'
+        };
+        
+        // Add order to user's orders
+        if (!userOrders[username]) {
+            userOrders[username] = [];
+        }
+        
+        userOrders[username].push(order);
+        
+        // Save to localStorage
+        localStorage.setItem('userOrders', JSON.stringify(userOrders));
+        
+        return true;
+    }
+
+    function getUserOrders() {
+        if (!currentUser) return [];
+
+        const userOrders = JSON.parse(localStorage.getItem('userOrders')) || {};
+        const directOrders = userOrders[currentUser.username] || [];
+
+        // Backward compatibility: map legacy shop orders to this user's history.
+        const legacyOrders = (JSON.parse(localStorage.getItem('floraOrders')) || [])
+            .filter(order => order && order.customer && order.customer.phone === currentUser.phone)
+            .map(order => ({
+                orderId: order.orderId || (order.id ? `ORD-${order.id}` : `ORD-${Date.now()}`),
+                date: order.date || new Date().toLocaleString(),
+                items: Array.isArray(order.items) ? order.items : [],
+                subtotal: order.subtotal || 0,
+                delivery: order.delivery || 0,
+                total: order.total || 0,
+                deliveryAddress: order.deliveryAddress || order.customer.address || '',
+                deliveryPhone: order.deliveryPhone || order.customer.phone || '',
+                deliveryName: order.deliveryName || order.customer.name || '',
+                deliveryCity: order.deliveryCity || order.customer.city || '',
+                deliveryPostal: order.deliveryPostal || order.customer.postal || '',
+                paymentMethod: order.paymentMethod || 'cash',
+                status: order.status || 'Confirmed'
+            }));
+
+        const mergedOrders = [...directOrders];
+        legacyOrders.forEach(legacy => {
+            if (!mergedOrders.some(existing => existing.orderId === legacy.orderId)) {
+                mergedOrders.push(legacy);
+            }
+        });
+
+        return mergedOrders;
+    }
+
+    function displayUserOrders() {
+        const orders = getUserOrders();
+        
+        if (orders.length === 0) {
+            alert(currentLanguage === 'EN' ? 
+                'No orders yet! Start shopping now.' : 
+                'لا توجد طلبات حتى الآن! ابدأ التسوق الآن.');
+            return;
+        }
+        
+        let ordersList = currentLanguage === 'EN' ? 'YOUR ORDERS:\n\n' : 'طلباتك:\n\n';
+        
+        orders.forEach((order, index) => {
+            const itemsList = order.items.map(item => `${item.name} (${item.price} OMR)`).join(', ');
+            
+            if (currentLanguage === 'EN') {
+                ordersList += `Order ${index + 1}:\n`;
+                ordersList += `ID: ${order.orderId}\n`;
+                ordersList += `Date: ${order.date}\n`;
+                ordersList += `Items: ${itemsList}\n`;
+                ordersList += `Delivery: ${order.deliveryName}\n`;
+                ordersList += `City: ${order.deliveryCity}\n`;
+                ordersList += `Total: ${order.total} OMR\n`;
+                ordersList += `Status: ${order.status}\n\n`;
+            } else {
+                ordersList += `الطلب ${index + 1}:\n`;
+                ordersList += `رقم الطلب: ${order.orderId}\n`;
+                ordersList += `التاريخ: ${order.date}\n`;
+                ordersList += `المنتجات: ${itemsList}\n`;
+                ordersList += `المستقبل: ${order.deliveryName}\n`;
+                ordersList += `المدينة: ${order.deliveryCity}\n`;
+                ordersList += `الإجمالي: ${order.total} ريال عماني\n`;
+                ordersList += `الحالة: ${order.status}\n\n`;
+            }
+        });
+        
+        alert(ordersList);
+    }
+</script>
+
+</body>
+</html>

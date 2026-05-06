@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - FLORA Flower Shop</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+</head>
+
+<body class="en">
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg sticky-top flora-navbar">
+    <div class="container-fluid">
+        <a class="navbar-brand flora-brand" href="index.html">
+    <img src="imgs/Red Simple Flowers Shop Logo.png" alt="FLORA" class="flora-brand-logo">
+    <i class="bi bi-house-fill flora-home-icon"></i>
+</a>
+        <div class="flora-nav-tools">
+            <div>
+                <span id="langEN" onclick="switchLanguage('EN')" class="flora-lang-toggle flora-lang-en">EN</span>
+                <span id="langAR" onclick="switchLanguage('AR')" class="flora-lang-toggle flora-lang-ar">العربية</span>
+            </div>
+            <button onclick="openCart()" class="btn flora-icon-btn" aria-label="Open shopping cart" title="Open shopping cart">
+                <i class="bi bi-cart flora-cart-icon"></i>
+                <span id="cartCount" class="flora-cart-badge">0</span>
+            </button>
+        </div>
+    </div>
+</nav>
+
+<!-- MAIN CONTENT -->
+<div class="container mt-5 mb-5">
+    <!-- PAGE TITLE -->
+    <div style="text-align: center; margin-bottom: 50px;">
+        <h1 style="color: #851720; font-style: italic; font-family: 'Times New Roman', Times, serif; font-size: 48px; font-weight: bold; margin-bottom: 10px;" data-en="📞 Contact Us" data-ar="📞 اتصل بنا">
+            📞 Contact Us
+        </h1>
+        <p style="color: #851720; font-size: 18px; font-family: 'Times New Roman', Times, serif;" data-en="We'd love to hear from you! Get in touch with us today." data-ar="نود أن نسمع منك! تواصل معنا اليوم.">We'd love to hear from you! Get in touch with us today.</p>
+    </div>
+
+    <div class="row">
+        <!-- LEFT SIDE - CONTACT FORM -->
+        <div class="col-lg-8">
+            <div class="card" style="border: 2px solid #851720; border-radius: 15px; overflow: hidden;">
+                <div class="card-body" style="padding: 40px;">
+                    <h3 style="color: #851720; font-weight: bold; margin-bottom: 30px; display: flex; align-items: center; gap: 10px;" data-en="Send us a Message" data-ar="أرسل لنا رسالة">
+                        <i class="bi bi-envelope" style="font-size: 28px;"></i> Send us a Message
+                    </h3>
+
+                    <form id="contactForm">
+                        <!-- NAME FIELD -->
+                        <div class="mb-4">
+                            <label for="name" style="color: #851720; font-weight: bold; display: block; margin-bottom: 8px;" data-en="Full Name *" data-ar="الاسم الكامل *">Full Name *</label>
+                            <input type="text" class="form-control" id="name" name="name" placeholder="Enter your full name" required style="border: 2px solid #851720; border-radius: 8px; padding: 12px; font-size: 16px;">
+                            <small style="color: #851720; display: block; margin-top: 5px;" data-en="Please enter your first and last name" data-ar="يرجى إدخال الاسم الأول والأخير">Please enter your first and last name</small>
+                        </div>
+
+                        <!-- EMAIL FIELD -->
+                        <div class="mb-4">
+                            <label for="email" style="color: #851720; font-weight: bold; display: block; margin-bottom: 8px;" data-en="Email Address *" data-ar="عنوان البريد الإلكتروني *">Email Address *</label>
+                            <input type="email" class="form-control" id="email" name="email" placeholder="example@email.com" required style="border: 2px solid #851720; border-radius: 8px; padding: 12px; font-size: 16px;">
+                            <small style="color: #851720; display: block; margin-top: 5px;" data-en="We'll never share your email with anyone" data-ar="لن نشارك بريدك الإلكتروني مع أي شخص">We'll never share your email with anyone</small>
+                        </div>
+
+                        <!-- PHONE NUMBER FIELD -->
+                        <div class="mb-4">
+                            <label for="phone" style="color: #851720; font-weight: bold; display: block; margin-bottom: 8px;" data-en="Phone Number *" data-ar="رقم الهاتف *">Phone Number *</label>
+                            <input type="tel" class="form-control" id="phone" name="phone" placeholder="+968 90000000" required style="border: 2px solid #851720; border-radius: 8px; padding: 12px; font-size: 16px;">
+                            <small style="color: #851720; display: block; margin-top: 5px;" data-en="Include country code (e.g., +968)" data-ar="قم بتضمين رمز البلد (على سبيل المثال، +968)">Include country code (e.g., +968)</small>
+                        </div>
+
+                        <!-- MESSAGE FIELD -->
+                        <div class="mb-4">
+                            <label for="message" style="color: #851720; font-weight: bold; display: block; margin-bottom: 8px;" data-en="Message *" data-ar="الرسالة *">Message *</label>
+                            <textarea class="form-control" id="message" name="message" rows="6" placeholder="Tell us how we can help..." required style="border: 2px solid #851720; border-radius: 8px; padding: 12px; font-size: 16px; resize: none;"></textarea>
+                            <small style="color: #851720; display: block; margin-top: 5px;" data-en="Minimum 10 characters" data-ar="10 أحرف على الأقل">Minimum 10 characters</small>
+                        </div>
+
+                        <!-- CHECKBOX FOR NEWSLETTER -->
+                        <div class="mb-4">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="newsletter" name="newsletter" style="width: 20px; height: 20px; cursor: pointer; accent-color: #851720;">
+                                <label class="form-check-label" for="newsletter" style="color: #851720; cursor: pointer; margin-left: 10px;" data-en="Subscribe to our newsletter for special offers and updates" data-ar="اشترك في نشرتنا الإخبارية للحصول على عروض خاصة وتحديثات">Subscribe to our newsletter for special offers and updates</label>
+                            </div>
+                        </div>
+
+                        <!-- SUBMIT BUTTON -->
+                        <button type="submit" class="btn w-100" style="background-color: #851720; color: #ffcbde; font-weight: 600; padding: 14px; font-size: 16px; border-radius: 8px; border: none; cursor: pointer; transition: all 0.3s ease;" data-en="Send Message" data-ar="إرسال الرسالة">
+                            <i class="bi bi-send"></i> Send Message
+                        </button>
+
+                        <p style="color: #851720; font-size: 12px; margin-top: 15px; text-align: center;">
+                            <span style="color: #dc3545;">*</span> <span data-en="Required fields" data-ar="الحقول المطلوبة">Required fields</span>
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- RIGHT SIDE - CONTACT INFO -->
+        <div class="col-lg-4">
+            <!-- CONTACT INFO CARD -->
+            <div class="card" style="border: 2px solid #851720; border-radius: 15px; overflow: hidden; margin-bottom: 20px;">
+                <div class="card-body" style="padding: 30px;">
+                    <h4 style="color: #851720; font-weight: bold; margin-bottom: 25px; display: flex; align-items: center; gap: 10px;" data-en="Get in Touch" data-ar="تواصل معنا">
+                        <i class="bi bi-info-circle" style="font-size: 24px;"></i> Get in Touch
+                    </h4>
+
+                    <!-- PHONE -->
+                    <div style="margin-bottom: 25px;">
+                        <h6 style="color: #851720; font-weight: bold; margin-bottom: 8px; display: flex; align-items: center; gap: 8px;" data-en="Phone" data-ar="الهاتف">
+                            <i class="bi bi-telephone" style="color: #851720;"></i> Phone
+                        </h6>
+                        <p style="color: #851720; margin: 0; font-size: 16px;">+968 90000000</p>
+                        <p style="color: #851720; margin: 5px 0 0 0; font-size: 13px;" data-en="Mon - Fri: 9:00 AM - 6:00 PM" data-ar="الإثنين - الجمعة: 9:00 صباحاً - 6:00 مساءً">Mon - Fri: 9:00 AM - 6:00 PM</p>
+                    </div>
+
+                    <!-- EMAIL -->
+                    <div style="margin-bottom: 25px;">
+                        <h6 style="color: #851720; font-weight: bold; margin-bottom: 8px; display: flex; align-items: center; gap: 8px;" data-en="Email" data-ar="البريد الإلكتروني">
+                            <i class="bi bi-envelope" style="color: #851720;"></i> Email
+                        </h6>
+                        <p style="color: #851720; margin: 0; font-size: 16px;">info@floraflowers.om</p>
+                        <p style="color: #851720; margin: 5px 0 0 0; font-size: 13px;" data-en="We'll reply within 24 hours" data-ar="سنرد في غضون 24 ساعة">We'll reply within 24 hours</p>
+                    </div>
+
+                    <!-- ADDRESS -->
+                    <div style="margin-bottom: 25px;">
+                        <h6 style="color: #851720; font-weight: bold; margin-bottom: 8px; display: flex; align-items: center; gap: 8px;" data-en="Address" data-ar="العنوان">
+                            <i class="bi bi-geo-alt" style="color: #851720;"></i> Address
+                        </h6>
+                        <p style="color: #851720; margin: 0; font-size: 16px;">Muscat, Oman</p>
+                        <p style="color: #851720; margin: 5px 0 0 0; font-size: 13px;" data-en="Available for delivery" data-ar="متاح للتوصيل">Available for delivery</p>
+                    </div>
+
+                    <!-- SOCIAL MEDIA -->
+                    <div>
+                        <h6 style="color: #851720; font-weight: bold; margin-bottom: 12px; display: flex; align-items: center; gap: 8px;" data-en="Follow Us" data-ar="تابعنا">
+                            <i class="bi bi-share" style="color: #851720;"></i> Follow Us
+                        </h6>
+                        <div style="display: flex; gap: 12px;">
+                            <a href="#" style="width: 40px; height: 40px; background-color: #851720; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; transition: all 0.3s ease;" onmouseover="this.style.backgroundColor='#6b1218'" onmouseout="this.style.backgroundColor='#851720';" aria-label="Facebook" title="Facebook">
+                                <i class="bi bi-facebook"></i>
+                            </a>
+                            <a href="#" style="width: 40px; height: 40px; background-color: #851720; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; transition: all 0.3s ease;" onmouseover="this.style.backgroundColor='#6b1218'" onmouseout="this.style.backgroundColor='#851720';" aria-label="Instagram" title="Instagram">
+                                <i class="bi bi-instagram"></i>
+                            </a>
+                            <a href="#" style="width: 40px; height: 40px; background-color: #851720; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; transition: all 0.3s ease; font-weight: bold;" onmouseover="this.style.backgroundColor='#6b1218'" onmouseout="this.style.backgroundColor='#851720';">
+                                X
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- QUICK RESPONSE CARD -->
+            <div class="card" style="border: 2px solid #851720; border-radius: 15px; overflow: hidden; background: linear-gradient(135deg, #851720 0%, #6b1218 100%);">
+                <div class="card-body" style="padding: 25px; text-align: center;">
+                    <i class="bi bi-hand-thumbs-up" style="font-size: 40px; color: #ffcbde; display: block; margin-bottom: 15px;"></i>
+                    <h5 style="color: #ffcbde; font-weight: bold; margin-bottom: 10px;" data-en="Quick Response" data-ar="رد سريع">Quick Response</h5>
+                    <p style="color: #ffcbde; font-size: 14px; margin: 0; line-height: 1.6;" data-en="Our team responds to all inquiries within 24 hours. We're here to help!" data-ar="يرد فريقنا على جميع الاستفسارات في غضون 24 ساعة. نحن هنا للمساعدة!">Our team responds to all inquiries within 24 hours. We're here to help!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FAQ SECTION -->
+    <div class="row mt-5">
+        <div class="col-lg-8 mx-auto">
+            <div class="card" style="border: 2px solid #851720; border-radius: 15px; overflow: hidden;">
+                <div class="card-body" style="padding: 40px;">
+                    <h3 style="color: #851720; font-weight: bold; margin-bottom: 30px; text-align: center; display: flex; align-items: center; justify-content: center; gap: 10px;" data-en="Frequently Asked Questions" data-ar="الأسئلة المتكررة">
+                        <i class="bi bi-question-circle" style="font-size: 28px;"></i> Frequently Asked Questions
+                    </h3>
+
+                    <div class="accordion" id="faqAccordion">
+                        <!-- FAQ 1 -->
+                        <div class="accordion-item" style="border: 1px solid #851720; margin-bottom: 10px; border-radius: 8px;">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1" style="background-color: #fff; color: #851720; font-weight: bold;" data-en="What are your delivery times?" data-ar="ما هي أوقات التسليم الخاصة بك؟">
+                                    What are your delivery times?
+                                </button>
+                            </h2>
+                            <div id="faq1" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body" style="background-color: #fff9e6;">
+                                    <p style="color: #851720; margin: 0;" data-en="We offer standard delivery (2-3 business days) and express delivery (same-day, additional charge of 5 OMR). All deliveries are made between 9:00 AM and 6:00 PM." data-ar="نحن نقدم التسليم القياسي (2-3 أيام عمل) والتسليم السريع (في نفس اليوم، رسوم إضافية 5 ريال عماني). يتم جميع التسليمات بين الساعة 9:00 صباحاً والساعة 6:00 مساءً.">
+                                        We offer standard delivery (2-3 business days) and express delivery (same-day, additional charge of 5 OMR). All deliveries are made between 9:00 AM and 6:00 PM.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- FAQ 2 -->
+                        <div class="accordion-item" style="border: 1px solid #851720; margin-bottom: 10px; border-radius: 8px;">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq2" style="background-color: #fff; color: #851720; font-weight: bold;" data-en="What is your minimum order?" data-ar="ما هو الحد الأدنى للطلب؟">
+                                    What is your minimum order?
+                                </button>
+                            </h2>
+                            <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body" style="background-color: #fff9e6;">
+                                    <p style="color: #851720; margin: 0;" data-en="Our minimum order is 10 OMR. This applies to both pre-made bouquets and custom-built arrangements." data-ar="الحد الأدنى للطلب لدينا هو 10 ريال عماني. ينطبق هذا على كل من الباقات الجاهزة والترتيبات المخصصة.">
+                                        Our minimum order is 10 OMR. This applies to both pre-made bouquets and custom-built arrangements.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- FAQ 3 -->
+                        <div class="accordion-item" style="border: 1px solid #851720; margin-bottom: 10px; border-radius: 8px;">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq3" style="background-color: #fff; color: #851720; font-weight: bold;" data-en="Can I customize my bouquet?" data-ar="هل يمكنني تخصيص باقتي؟">
+                                    Can I customize my bouquet?
+                                </button>
+                            </h2>
+                            <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body" style="background-color: #fff9e6;">
+                                    <p style="color: #851720; margin: 0;" data-en="Yes! We have a Build Your Bouquet feature where you can choose flowers, colors (for roses and tulips), vases, and add personalized cards. Visit our Build Bouquet page to create your perfect arrangement." data-ar="نعم! لدينا ميزة بناء باقتك الخاصة حيث يمكنك اختيار الزهور والألوان (للورود والزنابق) والأواني وإضافة بطاقات شخصية. قم بزيارة صفحة Build Bouquet لإنشاء ترتيبك المثالي.">
+                                        Yes! We have a "Build Your Bouquet" feature where you can choose flowers, colors (for roses and tulips), vases, and add personalized cards. Visit our Build Bouquet page to create your perfect arrangement.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- FAQ 4 -->
+                        <div class="accordion-item" style="border: 1px solid #851720; margin-bottom: 10px; border-radius: 8px;">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq4" style="background-color: #fff; color: #851720; font-weight: bold;" data-en="What is your refund policy?" data-ar="ما هي سياسة الاسترجاع الخاصة بك؟">
+                                    What is your refund policy?
+                                </button>
+                            </h2>
+                            <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body" style="background-color: #fff9e6;">
+                                    <p style="color: #851720; margin: 0;" data-en="We offer a 7-day return window from the date of delivery. Refunds are processed within 5-7 business days. If you receive damaged flowers, please report within 24 hours for a free replacement." data-ar="نحن نقدم نافذة إرجاع مدتها 7 أيام من تاريخ التسليم. تتم معالجة المبالغ المسترجعة في غضون 5-7 أيام عمل. إذا تلقيت زهوراً تالفة، يرجى الإبلاغ عنها في غضون 24 ساعة للحصول على بديل مجاني.">
+                                        We offer a 7-day return window from the date of delivery. Refunds are processed within 5-7 business days. If you receive damaged flowers, please report within 24 hours for a free replacement.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- FAQ 5 -->
+                        <div class="accordion-item" style="border: 1px solid #851720; border-radius: 8px;">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq5" style="background-color: #fff; color: #851720; font-weight: bold;" data-en="Do you deliver outside Muscat?" data-ar="هل تقدم خدمة التسليم خارج مسقط؟">
+                                    Do you deliver outside Muscat?
+                                </button>
+                            </h2>
+                            <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body" style="background-color: #fff9e6;">
+                                    <p style="color: #851720; margin: 0;" data-en="Currently, we deliver within Muscat and surrounding areas. For deliveries outside our service area, please contact us directly at +968 90000000 to discuss options." data-ar="حالياً، نقدم خدمة التسليم في مسقط والمناطق المحيطة. للتسليم خارج منطقة خدمتنا، يرجى التواصل معنا مباشرة على +968 90000000 لمناقشة الخيارات.">
+                                        Currently, we deliver within Muscat and surrounding areas. For deliveries outside our service area, please contact us directly at +968 90000000 to discuss options.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- FOOTER -->
+<footer style="background-color: #851720; padding: 40px 0; margin-top: 60px;">
+    <div class="container">
+        <div class="row text-center" style="text-align: center; color: #FFDAE4;">
+            <div class="col-md-3" style="margin-bottom: 20px;">
+                <h4 style="color: #FFDAE4; font-weight: bold; font-size: 24px;">FLORA</h4>
+                <p style="color: #FFDAE4; font-family: 'Times New Roman', Times, serif;">Flower Shop</p>
+            </div>
+            <div class="col-md-3" style="margin-bottom: 20px; color: #FFDAE4;">
+                <h5 style="color: #FFDAE4; font-weight: bold; margin-bottom: 15px;" data-en="Social Media" data-ar="وسائل التواصل الاجتماعي">Social Media</h5>
+                <div style="display: flex; gap: 15px; justify-content: center; font-size: 24px;">
+                    <a href="#" style="color: #FFDAE4; text-decoration: none;" aria-label="Facebook" title="Facebook"><i class="bi bi-facebook"></i></a>
+                    <a href="#" style="color: #FFDAE4; text-decoration: none;" aria-label="Instagram" title="Instagram"><i class="bi bi-instagram"></i></a>
+                    <a href="#" style="color: #FFDAE4; text-decoration: none; font-weight: bold;">X</a>
+                </div>
+            </div>
+            <div class="col-md-3" style="margin-bottom: 20px; color: #FFDAE4;">
+                <h5 style="color: #FFDAE4; font-weight: bold; margin-bottom: 15px;" data-en="Quick Links" data-ar="روابط سريعة">Quick Links</h5>
+                <ul style="list-style: none; padding: 0;">
+                    <li style="margin-bottom: 8px;"><a href="shop.html" style="color: #FFDAE4; text-decoration: none;" data-en="Shop" data-ar="المتجر">Shop</a></li>
+                    <li style="margin-bottom: 8px;"><a href="about.html" style="color: #FFDAE4; text-decoration: none;" data-en="About" data-ar="من نحن">About</a></li>
+                    <li style="margin-bottom: 8px;"><a href="contact.html" style="color: #FFDAE4; text-decoration: none;" data-en="Contact" data-ar="اتصل بنا">Contact</a></li>
+                </ul>
+            </div>
+            <div class="col-md-3" style="margin-bottom: 20px; color: #FFDAE4;">
+                <h5 style="color: #FFDAE4; font-weight: bold; margin-bottom: 15px;" data-en="Contact" data-ar="اتصل بنا">Contact</h5>
+                <p style="color: #FFDAE4;"><i class="bi bi-telephone"></i> +968 90000000</p>
+                <p style="color: #FFDAE4;"><i class="bi bi-geo-alt"></i> Muscat, Oman</p>
+            </div>
+        </div>
+        <hr style="border: 1px solid #ffcbde; margin-top: 30px;">
+        <div class="row text-center" style="color: #FFDAE4; margin-top: 20px;">
+            <div class="col-12">
+                <p style="color: #FFDAE4; margin: 0;" data-en="&copy; 2026 FLORA Flower Shop. All rights reserved." data-ar="&copy; 2026 متجر فلورا للزهور. جميع الحقوق محفوظة.">&copy; 2026 FLORA Flower Shop. All rights reserved.</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- CART MODAL -->
+<div class="modal fade" id="cartModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: #851720; color: #ffcbde;">
+                <h5 class="modal-title" data-en="Shopping Cart" data-ar="سلة التسوق">Shopping Cart</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" title="Close"></button>
+            </div>
+            <div class="modal-body" style="padding: 30px;">
+                <div id="cartItems" style="max-height: 400px; overflow-y: auto; margin-bottom: 20px;"></div>
+
+                <hr style="border: 1px solid #ddd; margin: 20px 0;">
+
+                <div style="background-color: #f9f9f9; border: 1px solid #ddd; border-radius: 8px; padding: 15px;">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px solid #ddd;">
+                        <span style="color: #851720;" data-en="Subtotal:" data-ar="المجموع الفرعي:">Subtotal:</span>
+                        <span id="subtotalPrice" style="color: #851720; font-weight: bold;">0 OMR</span>
+                    </div>
+
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px solid #ddd;">
+                        <span style="color: #851720;" data-en="Delivery Fee:" data-ar="رسوم التوصيل:">Delivery Fee:</span>
+                        <span id="deliveryFee" style="color: #851720; font-weight: bold;">5 OMR</span>
+                    </div>
+
+                    <div style="display: flex; justify-content: space-between; margin-top: 15px;">
+                        <h5 style="color: #851720; margin: 0;" data-en="Total:" data-ar="الإجمالي:">Total:</h5>
+                        <h5 id="cartTotal" style="color: #851720; font-weight: bold; margin: 0;">0 OMR</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer" style="border-top: 1px solid #ddd; padding: 20px;">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-en="Continue Shopping" data-ar="المتابعة في التسوق">Continue Shopping</button>
+                <button onclick="goToCheckout()" class="btn" style="background-color: #851720; color: #ffcbde; font-weight: 600;" data-en="Proceed to Checkout" data-ar="المتابعة إلى الدفع">Proceed to Checkout</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- CHECKOUT MODAL -->
+<div class="modal fade" id="checkoutModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: #851720; color: #ffcbde;">
+                <h5 class="modal-title" data-en="Checkout" data-ar="الدفع">Checkout</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" title="Close"></button>
+            </div>
+            <div class="modal-body" style="padding: 30px;">
+                
+                <h6 style="color: #851720; font-weight: bold; margin-bottom: 15px; border-bottom: 2px solid #851720; padding-bottom: 10px;" data-en="📍 Delivery Address" data-ar="📍 عنوان التسليم">📍 Delivery Address</h6>
+
+                <div class="mb-3">
+                    <label for="deliveryName" style="color: #851720; font-weight: bold; display: block; margin-bottom: 8px;" data-en="Recipient Name *" data-ar="اسم المستقبل *">Recipient Name *</label>
+                    <input type="text" class="form-control" id="deliveryName" placeholder="Enter recipient name" required style="border: 2px solid #851720; border-radius: 8px; padding: 10px;">
+                </div>
+
+                <div class="mb-3">
+                    <label for="deliveryPhone" style="color: #851720; font-weight: bold; display: block; margin-bottom: 8px;" data-en="Recipient Phone *" data-ar="هاتف المستقبل *">Recipient Phone *</label>
+                    <input type="tel" class="form-control" id="deliveryPhone" placeholder="+968 90000000" required style="border: 2px solid #851720; border-radius: 8px; padding: 10px;">
+                </div>
+
+                <div class="mb-3">
+                    <label for="deliveryAddress" style="color: #851720; font-weight: bold; display: block; margin-bottom: 8px;" data-en="Street Address *" data-ar="عنوان الشارع *">Street Address *</label>
+                    <input type="text" class="form-control" id="deliveryAddress" placeholder="Enter street address" required style="border: 2px solid #851720; border-radius: 8px; padding: 10px;">
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="deliveryCity" style="color: #851720; font-weight: bold; display: block; margin-bottom: 8px;" data-en="City *" data-ar="المدينة *">City *</label>
+                        <input type="text" class="form-control" id="deliveryCity" placeholder="Muscat" required style="border: 2px solid #851720; border-radius: 8px; padding: 10px;">
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="deliveryPostal" style="color: #851720; font-weight: bold; display: block; margin-bottom: 8px;" data-en="Postal Code *" data-ar="الرمز البريدي *">Postal Code *</label>
+                        <input type="text" class="form-control" id="deliveryPostal" placeholder="e.g., 100" required style="border: 2px solid #851720; border-radius: 8px; padding: 10px;">
+                    </div>
+                </div>
+
+                <hr style="border: 1px solid #ddd; margin: 20px 0;">
+
+                <h6 style="color: #851720; font-weight: bold; margin-bottom: 15px; border-bottom: 2px solid #851720; padding-bottom: 10px;" data-en="💳 Payment Method" data-ar="💳 طريقة الدفع">💳 Payment Method</h6>
+
+                <div class="mb-3">
+                    <div class="form-check mb-3">
+                        <input class="form-check-input" type="radio" name="paymentMethod" id="creditCard" value="creditCard" checked onchange="toggleCardDetails()" style="accent-color: #851720;">
+                        <label class="form-check-label" for="creditCard" style="color: #851720; font-weight: 500;" data-en="Credit/Debit Card" data-ar="بطاقة ائتمان/خصم">Credit/Debit Card</label>
+                    </div>
+
+                    <div class="form-check mb-3">
+                        <input class="form-check-input" type="radio" name="paymentMethod" id="bankTransfer" value="bankTransfer" onchange="toggleCardDetails()" style="accent-color: #851720;">
+                        <label class="form-check-label" for="bankTransfer" style="color: #851720; font-weight: 500;" data-en="Bank Transfer" data-ar="تحويل بنكي">Bank Transfer</label>
+                    </div>
+
+                    <div class="form-check mb-3">
+                        <input class="form-check-input" type="radio" name="paymentMethod" id="cashOnDelivery" value="cashOnDelivery" onchange="toggleCardDetails()" style="accent-color: #851720;">
+                        <label class="form-check-label" for="cashOnDelivery" style="color: #851720; font-weight: 500;" data-en="Cash on Delivery" data-ar="الدفع عند التسليم">Cash on Delivery</label>
+                    </div>
+                </div>
+
+                <div id="cardDetails" style="background-color: #fff9e6; border: 1px solid #851720; border-radius: 8px; padding: 15px;">
+                    <div class="mb-3">
+                        <label for="cardName" style="color: #851720; font-weight: bold; display: block; margin-bottom: 8px;" data-en="Cardholder Name *" data-ar="اسم صاحب البطاقة *">Cardholder Name *</label>
+                        <input type="text" class="form-control" id="cardName" placeholder="John Doe" style="border: 1px solid #851720; border-radius: 5px; padding: 8px;">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="cardNumber" style="color: #851720; font-weight: bold; display: block; margin-bottom: 8px;" data-en="Card Number *" data-ar="رقم البطاقة *">Card Number *</label>
+                        <input type="text" class="form-control" id="cardNumber" placeholder="1234 5678 9012 3456" maxlength="19" style="border: 1px solid #851720; border-radius: 5px; padding: 8px;">
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="cardExpiry" style="color: #851720; font-weight: bold; display: block; margin-bottom: 8px;" data-en="Expiry Date *" data-ar="تاريخ الانتهاء *">Expiry Date *</label>
+                            <input type="text" class="form-control" id="cardExpiry" placeholder="MM/YY" maxlength="5" style="border: 1px solid #851720; border-radius: 5px; padding: 8px;">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="cardCVV" style="color: #851720; font-weight: bold; display: block; margin-bottom: 8px;" data-en="CVV *" data-ar="CVV *">CVV *</label>
+                            <input type="text" class="form-control" id="cardCVV" placeholder="123" maxlength="3" style="border: 1px solid #851720; border-radius: 5px; padding: 8px;">
+                        </div>
+                    </div>
+                </div>
+
+                <hr style="border: 1px solid #ddd; margin: 20px 0;">
+
+                <div style="background-color: #f9f9f9; border: 1px solid #ddd; border-radius: 8px; padding: 15px;">
+                    <p style="color: #851720; margin: 0; font-weight: bold; margin-bottom: 10px;" data-en="Order Total:" data-ar="إجمالي الطلب:">Order Total:</p>
+                    <h4 id="checkoutTotal" style="color: #851720; font-weight: bold; margin: 0;">0 OMR</h4>
+                </div>
+            </div>
+            <div class="modal-footer" style="border-top: 1px solid #ddd; padding: 20px;">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-en="Back to Cart" data-ar="العودة إلى السلة">Back to Cart</button>
+                <button onclick="placeOrder()" class="btn" style="background-color: #851720; color: #ffcbde; font-weight: 600;" data-en="Place Order" data-ar="تقديم الطلب">Place Order</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/shared-commerce.js"></script>
+
+<script>
+let currentLanguage = 'EN';
+let cart = [];
+
+document.addEventListener('DOMContentLoaded', function() {
+    loadCart();
+    updateCartBadge();
+});
+
+function loadCart() {
+    cart = FloraSharedCommerce.loadCart();
+}
+
+function saveCart() {
+    FloraSharedCommerce.saveCart(cart);
+}
+
+function updateCartBadge() {
+    FloraSharedCommerce.updateCartBadge('cartCount', cart.length);
+}
+
+function switchLanguage(lang) {
+    currentLanguage = lang;
+    const langEN = document.getElementById('langEN');
+    const langAR = document.getElementById('langAR');
+    const body = document.body;
+
+    if (lang === 'EN') {
+        langEN.style.backgroundColor = '#851720';
+        langEN.style.color = '#fff';
+        langAR.style.backgroundColor = '#ffcbde';
+        langAR.style.color = '#851720';
+        body.classList.remove('ar');
+        body.classList.add('en');
+    } else {
+        langAR.style.backgroundColor = '#851720';
+        langAR.style.color = '#fff';
+        langEN.style.backgroundColor = '#ffcbde';
+        langEN.style.color = '#851720';
+        body.classList.remove('en');
+        body.classList.add('ar');
+    }
+
+    updateLanguage(lang);
+}
+
+function updateLanguage(lang) {
+    const elements = document.querySelectorAll('[data-en][data-ar]');
+    elements.forEach(el => {
+        if (lang === 'EN') {
+            el.textContent = el.getAttribute('data-en');
+        } else {
+            el.textContent = el.getAttribute('data-ar');
+        }
+    });
+}
+
+// CONTACT FORM HANDLING
+document.getElementById('contactForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const message = document.getElementById('message').value.trim();
+    const newsletter = document.getElementById('newsletter').checked;
+
+    // Validation
+    if (!name) {
+        alert(currentLanguage === 'EN' ? 'Please enter your full name' : 'يرجى إدخال اسمك الكامل');
+        return;
+    }
+
+    if (!email) {
+        alert(currentLanguage === 'EN' ? 'Please enter your email address' : 'يرجى إدخال عنوان بريدك الإلكتروني');
+        return;
+    }
+
+    if (!phone) {
+        alert(currentLanguage === 'EN' ? 'Please enter your phone number' : 'يرجى إدخال رقم هاتفك');
+        return;
+    }
+
+    if (message.length < 10) {
+        alert(currentLanguage === 'EN' ? 'Message must be at least 10 characters long' : 'يجب أن تكون الرسالة 10 أحرف على الأقل');
+        return;
+    }
+
+    // Success message
+    let successMsg = currentLanguage === 'EN' 
+        ? `Thank you for contacting FLORA!\n\nName: ${name}\nEmail: ${email}\nPhone: ${phone}\n\nWe received your message and will respond within 24 hours.`
+        : `شكراً لتواصلك مع فلورا!\n\nالاسم: ${name}\nالبريد الإلكتروني: ${email}\nالهاتف: ${phone}\n\nتلقينا رسالتك وسنرد عليك في غضون 24 ساعة.`;
+    
+    if (newsletter) {
+        successMsg += currentLanguage === 'EN' 
+            ? '\n\nYou have been subscribed to our newsletter!'
+            : '\n\nتم اشتراكك في نشرتنا الإخبارية!';
+    }
+
+    alert(successMsg);
+
+    // Reset form
+    this.reset();
+});
+
+function openCart() {
+    displayCartItems();
+    new bootstrap.Modal(document.getElementById('cartModal')).show();
+}
+
+function displayCartItems() {
+    const list = document.getElementById('cartItems');
+    
+    if (cart.length === 0) {
+        list.innerHTML = '<p style="color: #851720; text-align: center;">Your cart is empty</p>';
+        updatePrices();
+        return;
+    }
+
+    list.innerHTML = cart.map((item, index) => `
+        <div style="background: #fff; border: 1px solid #ddd; border-radius: 8px; padding: 15px; margin-bottom: 15px; display: flex; justify-content: space-between; align-items: center;">
+            <div style="flex-grow: 1;">
+                <p style="margin: 0; color: #851720; font-weight: 500;">${item.name}</p>
+                <p style="margin: 5px 0 0 0; color: #851720; font-weight: bold;">${item.price} OMR</p>
+            </div>
+            <button onclick="removeFromCart(${index})" style="background: #dc3545; color: white; border: none; padding: 8px 12px; border-radius: 5px; cursor: pointer;">✕</button>
+        </div>
+    `).join('');
+
+    updatePrices();
+}
+
+function removeFromCart(index) {
+    cart.splice(index, 1);
+    saveCart();
+    updateCartBadge();
+    displayCartItems();
+}
+
+function updatePrices() {
+    const subtotal = cart.reduce((sum, item) => sum + item.price, 0);
+    const delivery = subtotal > 25 ? 0 : 5;
+    const total = subtotal + delivery;
+
+    document.getElementById('subtotalPrice').textContent = subtotal.toFixed(2) + ' OMR';
+    document.getElementById('deliveryFee').textContent = (delivery === 0 ? 'FREE' : delivery) + (delivery === 0 ? '' : ' OMR');
+    document.getElementById('cartTotal').textContent = total.toFixed(2) + ' OMR';
+}
+
+function goToCheckout() {
+    if (cart.length === 0) {
+        alert('Your cart is empty!');
+        return;
+    }
+    
+    const subtotal = cart.reduce((sum, item) => sum + item.price, 0);
+    const delivery = subtotal > 25 ? 0 : 5;
+    const total = subtotal + delivery;
+    
+    document.getElementById('checkoutTotal').textContent = total.toFixed(2) + ' OMR';
+    
+    bootstrap.Modal.getInstance(document.getElementById('cartModal')).hide();
+    new bootstrap.Modal(document.getElementById('checkoutModal')).show();
+}
+
+function toggleCardDetails() {
+    const details = document.getElementById('cardDetails');
+    const method = document.querySelector('input[name="paymentMethod"]:checked');
+    
+    if (method && details) {
+        details.style.display = method.value === 'creditCard' ? 'block' : 'none';
+    }
+}
+
+function placeOrder() {
+    const name = document.getElementById('deliveryName').value.trim();
+    const phone = document.getElementById('deliveryPhone').value.trim();
+    const address = document.getElementById('deliveryAddress').value.trim();
+    const city = document.getElementById('deliveryCity').value.trim();
+    const postal = document.getElementById('deliveryPostal').value.trim();
+
+    if (!name || !phone || !address || !city || !postal) {
+        alert('Please fill all delivery fields!');
+        return;
+    }
+
+    const method = document.querySelector('input[name="paymentMethod"]:checked');
+    if (!method) {
+        alert('Please select a payment method!');
+        return;
+    }
+
+    const result = FloraSharedCommerce.saveOrder({
+        cart,
+        deliveryInfo: {
+            name,
+            phone,
+            address,
+            city,
+            postal
+        },
+        paymentMethod: method.value
+    });
+
+    alert(currentLanguage === 'EN' ? 
+        `✅ Order Confirmed!\n\nOrder ID: ${result.orderId}\nTotal: ${result.total.toFixed(2)} OMR\nDelivery to: ${city}\n\nThank you for shopping with FLORA!` :
+        `✅ تم تأكيد الطلب!\n\nرقم الطلب: ${result.orderId}\nالإجمالي: ${result.total.toFixed(2)} ريال عماني\nالتسليم إلى: ${city}\n\nشكراً لك على التسوق مع فلورا!`);
+    
+    cart = [];
+    saveCart();
+    updateCartBadge();
+    
+    document.getElementById('deliveryName').value = '';
+    document.getElementById('deliveryPhone').value = '';
+    document.getElementById('deliveryAddress').value = '';
+    document.getElementById('deliveryCity').value = '';
+    document.getElementById('deliveryPostal').value = '';
+    
+    bootstrap.Modal.getInstance(document.getElementById('checkoutModal')).hide();
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Build Your Bouquet - FLORA Flower Shop</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+</head>
+<body class="en">
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg sticky-top flora-navbar">
+    <div class="container-fluid">
+        <a class="navbar-brand flora-brand" href="index.html">
+    <img src="imgs/Red Simple Flowers Shop Logo.png" alt="FLORA" class="flora-brand-logo">
+    <i class="bi bi-house-fill flora-home-icon"></i>
+        </a>
+        <div class="flora-nav-tools">
+            <div>
+                <span id="langEN" onclick="switchLanguage('EN')" class="flora-lang-toggle flora-lang-en">EN</span>
+                <span id="langAR" onclick="switchLanguage('AR')" class="flora-lang-toggle flora-lang-ar">العربية</span>
+            </div>
+            <button onclick="openCart()" class="btn flora-icon-btn" aria-label="Open shopping cart" title="Open shopping cart">
+                <i class="bi bi-cart flora-cart-icon"></i>
+                <span id="cartCount" class="flora-cart-badge">0</span>
+            </button>
+        </div>
+    </div>
+</nav>
+
+<!-- CONTAINER -->
+<div class="container mt-5 mb-5">
+    <h1 style="color: #851720; text-align: center; margin-bottom: 40px;" data-en="🌹 Build Your Bouquet" data-ar="🌹 بناء باقتك">🌹 Build Your Bouquet</h1>
+
+    <div class="row">
+        <!-- LEFT SIDE - BUILDER -->
+        <div class="col-lg-8">
+            <div class="card" style="border: 2px solid #851720; border-radius: 10px;">
+                <div class="card-body">
+
+                    <!-- SECTION 1: CHOOSE FLOWERS WITH COLOR & QUANTITY -->
+                    <h5 style="color: #851720; border-bottom: 2px solid #851720; padding-bottom: 10px; margin-bottom: 20px;" data-en="🌹 Choose Flower Type, Color & Quantity" data-ar="🌹 اختر نوع الزهرة واللون والكمية">
+                        🌹 Choose Flower Type, Color & Quantity
+                    </h5>
+
+                    <div id="flowerOptions" class="row mb-4">
+                        <!-- Flower cards with images, colors, and quantity will be loaded here -->
+                    </div>
+
+                    <!-- PREVIEW OF SELECTED FLOWERS -->
+                    <div style="background-color: #f9f9f9; border: 2px solid #851720; border-radius: 10px; padding: 15px; margin-top: 20px;">
+                        <h6 style="color: #851720; font-weight: bold; margin-bottom: 15px;" data-en="📋 Selected Flowers:" data-ar="📋 الزهور المختارة:">
+                            📋 Selected Flowers:
+                        </h6>
+                        <div id="selectedFlowers" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px;">
+                            <p style="color: #851720; text-align: center; grid-column: 1 / -1;" data-en="No flowers selected yet" data-ar="لم يتم اختيار أي زهور بعد">No flowers selected yet</p>
+                        </div>
+                    </div>
+
+                    <hr style="margin: 30px 0;">
+
+                    <!-- SECTION 2: CHOOSE VASE WITH IMAGES -->
+                    <h5 style="color: #851720; border-bottom: 2px solid #851720; padding-bottom: 10px; margin-bottom: 20px;" data-en="🏺 Choose Vase" data-ar="🏺 اختر الإناء">
+                        🏺 Choose Vase
+                    </h5>
+
+                    <div id="vaseOptions" class="row mb-4">
+                        <!-- Vase options with images will be loaded here -->
+                    </div>
+
+                    <hr style="margin: 30px 0;">
+
+                    <!-- SECTION 3: QUANTITY OF BOUQUETS -->
+                    <h5 style="color: #851720; border-bottom: 2px solid #851720; padding-bottom: 10px; margin-bottom: 20px;" data-en="👜 Quantity of Bouquets" data-ar="👜 عدد الباقات">
+                        👜 Quantity of Bouquets
+                    </h5>
+
+                    <div class="mb-4">
+                        <div class="d-flex align-items-center gap-3">
+                            <button onclick="decreaseQuantity()" class="btn btn-outline-danger" style="border-color: #851720; color: #851720; font-weight: bold; font-size: 18px; width: 50px; height: 50px;">-</button>
+                            <input type="number" id="quantity" value="1" min="1" max="10" onchange="updatePrice()" style="width: 80px; text-align: center; border: 2px solid #851720; border-radius: 5px; padding: 10px; font-weight: bold; color: #851720; font-size: 18px;">
+                            <button onclick="increaseQuantity()" class="btn btn-outline-danger" style="border-color: #851720; color: #851720; font-weight: bold; font-size: 18px; width: 50px; height: 50px;">+</button>
+                            <span style="color: #851720; font-weight: bold; margin-left: 10px;" data-en="Number of Bouquets" data-ar="عدد الباقات">Number of Bouquets</span>
+                        </div>
+                    </div>
+
+                    <hr style="margin: 30px 0;">
+
+                    <!-- SECTION 4: GREETING CARD WITH NOTE -->
+                    <h5 style="color: #851720; border-bottom: 2px solid #851720; padding-bottom: 10px; margin-bottom: 20px;" data-en="💌 Add Greeting Card" data-ar="💌 أضف بطاقة معايدة">
+                        💌 Add Greeting Card
+                    </h5>
+
+                    <div class="mb-4">
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" id="card_yes" value="yes" onchange="toggleCardMessage(); updatePrice()">
+                            <label class="form-check-label" for="card_yes" style="color: #851720; font-weight: bold;" data-en="Yes, add a greeting card - 1 OMR" data-ar="نعم، أضف بطاقة معايدة - 1 ريال عماني">Yes, add a greeting card - 1 OMR</label>
+                        </div>
+
+                        <div id="cardMessageDiv" style="display: none;">
+                            <div class="mb-3">
+                                <label for="cardName" style="color: #851720; font-weight: bold;" data-en="From (Your Name):" data-ar="من (اسمك):">From (Your Name):</label>
+                                <input type="text" id="cardName" class="form-control" placeholder="Enter your name..." style="border: 2px solid #851720; border-radius: 5px; margin-top: 8px;">
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="cardMessage" style="color: #851720; font-weight: bold;" data-en="Card Note/Message:" data-ar="ملاحظة البطاقة/الرسالة:">Card Note/Message:</label>
+                                <textarea id="cardMessage" class="form-control" rows="4" placeholder="Write your greeting message here..." style="border: 2px solid #851720; border-radius: 5px; margin-top: 8px; resize: none;"></textarea>
+                                <small style="color: #851720;" data-en="Max 100 characters" data-ar="الحد الأقصى 100 حرف">Max 100 characters</small>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- RIGHT SIDE - SUMMARY & CHECKOUT -->
+        <div class="col-lg-4">
+            <div class="card" style="border: 2px solid #851720; border-radius: 10px; position: sticky; top: 100px;">
+                <div class="card-body">
+                    <h5 style="color: #851720; border-bottom: 2px solid #851720; padding-bottom: 10px; margin-bottom: 20px;" data-en="📊 Order Summary" data-ar="📊 ملخص الطلب">
+                        📊 Order Summary
+                    </h5>
+
+                    <!-- FLOWERS TOTAL -->
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px solid #ddd;">
+                        <span style="color: #851720;" data-en="Flowers:" data-ar="الزهور:">Flowers:</span>
+                        <span id="flowerTotal" style="color: #851720; font-weight: bold;">0 OMR</span>
+                    </div>
+
+                    <!-- VASE TOTAL -->
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px solid #ddd;">
+                        <span style="color: #851720;" data-en="Vase:" data-ar="الإناء:">Vase:</span>
+                        <span id="vaseTotal" style="color: #851720; font-weight: bold;">0 OMR</span>
+                    </div>
+
+                    <!-- CARD TOTAL -->
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px solid #ddd;">
+                        <span style="color: #851720;" data-en="Card:" data-ar="البطاقة:">Card:</span>
+                        <span id="cardTotal" style="color: #851720; font-weight: bold;">0 OMR</span>
+                    </div>
+
+                    <!-- QUANTITY -->
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px solid #ddd;">
+                        <span style="color: #851720;" data-en="Quantity:" data-ar="الكمية:">Quantity:</span>
+                        <span id="quantityDisplay" style="color: #851720; font-weight: bold;">1</span>
+                    </div>
+
+                    <!-- MINIMUM PRICE WARNING -->
+                    <div id="minPriceWarning" style="background-color: #fff3cd; border: 2px solid #ffc107; border-radius: 8px; padding: 10px; margin-bottom: 15px; display: none;">
+                        <p style="color: #856404; margin: 0; font-weight: bold; font-size: 12px;" data-en="⚠️ Minimum order is 10 OMR" data-ar="⚠️ الحد الأدنى للطلب هو 10 ريال عماني">⚠️ Minimum order is 10 OMR</p>
+                    </div>
+
+                    <!-- FINAL TOTAL -->
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 20px; padding-top: 10px;">
+                        <h5 style="color: #851720; margin: 0;" data-en="Total:" data-ar="الإجمالي:">Total:</h5>
+                        <h5 id="totalPrice" style="color: #851720; font-weight: bold; margin: 0;">0 OMR</h5>
+                    </div>
+
+                    <!-- ADD TO CART BUTTON -->
+                    <button onclick="addBouquetToCart()" class="btn w-100" style="background-color: #851720; color: #ffcbde; font-weight: 600; padding: 12px; font-size: 16px; border-radius: 5px; margin-bottom: 10px;" data-en="🛒 Add to Cart" data-ar="🛒 أضف إلى السلة">
+                        🛒 Add to Cart
+                    </button>
+
+                    <button onclick="openCart()" class="btn btn-outline-danger w-100" style="border-color: #851720; color: #851720; font-weight: 600; padding: 12px; font-size: 16px; border-radius: 5px;" data-en="👜 View Cart" data-ar="👜 عرض السلة">
+                        👜 View Cart
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- CART MODAL -->
+<div class="modal fade" id="cartModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: #851720; color: #ffcbde;">
+                <h5 class="modal-title" data-en="Shopping Cart" data-ar="سلة التسوق">Shopping Cart</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" title="Close"></button>
+            </div>
+            <div class="modal-body" style="padding: 30px;">
+                <div id="cartItems" style="max-height: 400px; overflow-y: auto; margin-bottom: 20px;"></div>
+
+                <hr style="border: 1px solid #ddd; margin: 20px 0;">
+
+                <div style="background-color: #f9f9f9; border: 1px solid #ddd; border-radius: 8px; padding: 15px;">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px solid #ddd;">
+                        <span style="color: #851720;" data-en="Subtotal:" data-ar="المجموع الفرعي:">Subtotal:</span>
+                        <span id="subtotalPrice" style="color: #851720; font-weight: bold;">0 OMR</span>
+                    </div>
+
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px solid #ddd;">
+                        <span style="color: #851720;" data-en="Delivery Fee:" data-ar="رسوم التوصيل:">Delivery Fee:</span>
+                        <span id="deliveryFee" style="color: #851720; font-weight: bold;">5 OMR</span>
+                    </div>
+
+                    <div style="display: flex; justify-content: space-between; margin-top: 15px;">
+                        <h5 style="color: #851720; margin: 0;" data-en="Total:" data-ar="الإجمالي:">Total:</h5>
+                        <h5 id="cartTotal" style="color: #851720; font-weight: bold; margin: 0;">0 OMR</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer" style="border-top: 1px solid #ddd; padding: 20px;">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-en="Continue Shopping" data-ar="المتابعة في التسوق">Continue Shopping</button>
+                <button onclick="goToCheckout()" class="btn" style="background-color: #851720; color: #ffcbde; font-weight: 600;" data-en="Proceed to Checkout" data-ar="المتابعة إلى الدفع">Proceed to Checkout</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- CHECKOUT MODAL -->
+<div class="modal fade" id="checkoutModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: #851720; color: #ffcbde;">
+                <h5 class="modal-title" data-en="Checkout" data-ar="الدفع">Checkout</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" title="Close"></button>
+            </div>
+            <div class="modal-body" style="padding: 30px;">
+                
+                <h6 style="color: #851720; font-weight: bold; margin-bottom: 15px; border-bottom: 2px solid #851720; padding-bottom: 10px;" data-en="📍 Delivery Address" data-ar="📍 عنوان التسليم">📍 Delivery Address</h6>
+
+                <div class="mb-3">
+                    <label for="deliveryName" style="color: #851720; font-weight: bold; display: block; margin-bottom: 8px;" data-en="Recipient Name *" data-ar="اسم المستقبل *">Recipient Name *</label>
+                    <input type="text" class="form-control" id="deliveryName" placeholder="Enter recipient name" required style="border: 2px solid #851720; border-radius: 8px; padding: 10px;">
+                </div>
+
+                <div class="mb-3">
+                    <label for="deliveryPhone" style="color: #851720; font-weight: bold; display: block; margin-bottom: 8px;" data-en="Recipient Phone *" data-ar="هاتف المستقبل *">Recipient Phone *</label>
+                    <input type="tel" class="form-control" id="deliveryPhone" placeholder="+968 90000000" required style="border: 2px solid #851720; border-radius: 8px; padding: 10px;">
+                </div>
+
+                <div class="mb-3">
+                    <label for="deliveryAddress" style="color: #851720; font-weight: bold; display: block; margin-bottom: 8px;" data-en="Street Address *" data-ar="عنوان الشارع *">Street Address *</label>
+                    <input type="text" class="form-control" id="deliveryAddress" placeholder="Enter street address" required style="border: 2px solid #851720; border-radius: 8px; padding: 10px;">
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="deliveryCity" style="color: #851720; font-weight: bold; display: block; margin-bottom: 8px;" data-en="City *" data-ar="المدينة *">City *</label>
+                        <input type="text" class="form-control" id="deliveryCity" placeholder="Muscat" required style="border: 2px solid #851720; border-radius: 8px; padding: 10px;">
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="deliveryPostal" style="color: #851720; font-weight: bold; display: block; margin-bottom: 8px;" data-en="Postal Code *" data-ar="الرمز البريدي *">Postal Code *</label>
+                        <input type="text" class="form-control" id="deliveryPostal" placeholder="e.g., 100" required style="border: 2px solid #851720; border-radius: 8px; padding: 10px;">
+                    </div>
+                </div>
+
+                <hr style="border: 1px solid #ddd; margin: 20px 0;">
+
+                <h6 style="color: #851720; font-weight: bold; margin-bottom: 15px; border-bottom: 2px solid #851720; padding-bottom: 10px;" data-en="💳 Payment Method" data-ar="💳 طريقة الدفع">💳 Payment Method</h6>
+
+                <div class="mb-3">
+                    <div class="form-check mb-3">
+                        <input class="form-check-input" type="radio" name="paymentMethod" id="creditCard" value="creditCard" checked onchange="toggleCardDetails()" style="accent-color: #851720;">
+                        <label class="form-check-label" for="creditCard" style="color: #851720; font-weight: 500;" data-en="Credit/Debit Card" data-ar="بطاقة ائتمان/خصم">Credit/Debit Card</label>
+                    </div>
+
+                    <div class="form-check mb-3">
+                        <input class="form-check-input" type="radio" name="paymentMethod" id="bankTransfer" value="bankTransfer" onchange="toggleCardDetails()" style="accent-color: #851720;">
+                        <label class="form-check-label" for="bankTransfer" style="color: #851720; font-weight: 500;" data-en="Bank Transfer" data-ar="تحويل بنكي">Bank Transfer</label>
+                    </div>
+
+                    <div class="form-check mb-3">
+                        <input class="form-check-input" type="radio" name="paymentMethod" id="cashOnDelivery" value="cashOnDelivery" onchange="toggleCardDetails()" style="accent-color: #851720;">
+                        <label class="form-check-label" for="cashOnDelivery" style="color: #851720; font-weight: 500;" data-en="Cash on Delivery" data-ar="الدفع عند التسليم">Cash on Delivery</label>
+                    </div>
+                </div>
+
+                <div id="cardDetails" style="background-color: #fff9e6; border: 1px solid #851720; border-radius: 8px; padding: 15px;">
+                    <div class="mb-3">
+                        <label for="cardName" style="color: #851720; font-weight: bold; display: block; margin-bottom: 8px;" data-en="Cardholder Name *" data-ar="اسم صاحب البطاقة *">Cardholder Name *</label>
+                        <input type="text" class="form-control" id="cardName" placeholder="John Doe" style="border: 1px solid #851720; border-radius: 5px; padding: 8px;">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="cardNumber" style="color: #851720; font-weight: bold; display: block; margin-bottom: 8px;" data-en="Card Number *" data-ar="رقم البطاقة *">Card Number *</label>
+                        <input type="text" class="form-control" id="cardNumber" placeholder="1234 5678 9012 3456" maxlength="19" style="border: 1px solid #851720; border-radius: 5px; padding: 8px;">
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="cardExpiry" style="color: #851720; font-weight: bold; display: block; margin-bottom: 8px;" data-en="Expiry Date *" data-ar="تاريخ الانتهاء *">Expiry Date *</label>
+                            <input type="text" class="form-control" id="cardExpiry" placeholder="MM/YY" maxlength="5" style="border: 1px solid #851720; border-radius: 5px; padding: 8px;">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="cardCVV" style="color: #851720; font-weight: bold; display: block; margin-bottom: 8px;" data-en="CVV *" data-ar="CVV *">CVV *</label>
+                            <input type="text" class="form-control" id="cardCVV" placeholder="123" maxlength="3" style="border: 1px solid #851720; border-radius: 5px; padding: 8px;">
+                        </div>
+                    </div>
+                </div>
+
+                <hr style="border: 1px solid #ddd; margin: 20px 0;">
+
+                <div style="background-color: #f9f9f9; border: 1px solid #ddd; border-radius: 8px; padding: 15px;">
+                    <p style="color: #851720; margin: 0; font-weight: bold; margin-bottom: 10px;" data-en="Order Total:" data-ar="إجمالي الطلب:">Order Total:</p>
+                    <h4 id="checkoutTotal" style="color: #851720; font-weight: bold; margin: 0;">0 OMR</h4>
+                </div>
+            </div>
+            <div class="modal-footer" style="border-top: 1px solid #ddd; padding: 20px;">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-en="Back to Cart" data-ar="العودة إلى السلة">Back to Cart</button>
+                <button onclick="placeOrder()" class="btn" style="background-color: #851720; color: #ffcbde; font-weight: 600;" data-en="Place Order" data-ar="تقديم الطلب">Place Order</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/shared-commerce.js"></script>
+
+<script>
+const flowers = [
+    { id: 1, name: 'Roses Per One', price: 1, image: 'imgs/red Roses (2).png' },
+    { id: 2, name: 'Tulips Per One', price: 2, image: 'imgs/red tulip (3).png' },
+    { id: 3, name: 'Sunflowers Per One', price: 1.5, image: 'imgs/sunflower.png' },
+    { id: 4, name: 'Lilies Per One', price: 2, image: 'imgs/lilies.png' },
+    { id: 5, name: 'Dahlias Per One', price: 2, image: 'imgs/dahilias.png' },
+    { id: 6, name: 'Peonies Per One', price: 2.5, image: 'imgs/peony.png' },
+    { id: 7, name: 'Orchids Per One', price: 1.5, image: 'imgs/orchid.png' },
+    { id: 8, name: 'Hydrangea Per One', price: 3, image: 'imgs/hydrangea.png' }
+];
+
+const colors = [
+    { id: 1, name: 'Red', hex: '#DC143C' },
+    { id: 2, name: 'Pink', hex: '#FFB6C1' },
+    { id: 3, name: 'White', hex: '#FFFFFF' },
+    { id: 4, name: 'Yellow', hex: '#FFD700' }
+];
+
+const vases = [
+    { id: 1, name: 'Clear Glass Vase', price: 2, image: 'imgs/GlassVase1.png' },
+    { id: 2, name: 'Glass Vase', price: 3.5, image: 'imgs/GlassVase.jpg' },
+    { id: 3, name: 'Ceramic Vase', price: 5, image: 'imgs/Ceramic.jpg' },
+    { id: 4, name: 'Basket', price: 4, image: 'imgs/BasketVase.jpg' }
+];
+
+let selectedFlowers = [];
+let cart = [];
+let currentLanguage = 'EN';
+
+document.addEventListener('DOMContentLoaded', function() {
+    loadCart();
+    updateCartBadge();
+    loadFlowers();
+    loadVases();
+});
+
+function loadCart() {
+    cart = FloraSharedCommerce.loadCart();
+}
+
+function saveCart() {
+    FloraSharedCommerce.saveCart(cart);
+}
+
+function updateCartBadge() {
+    FloraSharedCommerce.updateCartBadge('cartCount', cart.length);
+}
+
+function switchLanguage(lang) {
+    currentLanguage = lang;
+    const langEN = document.getElementById('langEN');
+    const langAR = document.getElementById('langAR');
+    const body = document.body;
+
+    if (lang === 'EN') {
+        langEN.style.backgroundColor = '#851720';
+        langEN.style.color = '#fff';
+        langAR.style.backgroundColor = '#ffcbde';
+        langAR.style.color = '#851720';
+        body.classList.remove('ar');
+        body.classList.add('en');
+    } else {
+        langAR.style.backgroundColor = '#851720';
+        langAR.style.color = '#fff';
+        langEN.style.backgroundColor = '#ffcbde';
+        langEN.style.color = '#851720';
+        body.classList.remove('en');
+        body.classList.add('ar');
+    }
+
+    updateLanguage(lang);
+}
+
+function updateLanguage(lang) {
+    const elements = document.querySelectorAll('[data-en][data-ar]');
+    elements.forEach(el => {
+        if (lang === 'EN') {
+            el.textContent = el.getAttribute('data-en');
+        } else {
+            el.textContent = el.getAttribute('data-ar');
+        }
+    });
+}
+
+function loadFlowers() {
+    const flowerOptions = document.getElementById('flowerOptions');
+    flowerOptions.innerHTML = flowers.map(flower => `
+        <div class="col-md-6 col-lg-3 mb-4">
+            <div style="border: 2px solid #851720; border-radius: 10px; overflow: hidden; background-color: white;">
+                <img id="flower_img_${flower.id}" src="${flower.image}" alt="${flower.name}" style="width: 100%; height: 80px; object-fit: contain; background-color: #f0f0f0;">
+                
+                <div style="background-color: rgba(0, 0, 0, 0.85); color: white; padding: 8px; text-align: center;">
+                    <p style="margin: 0; font-weight: bold; font-size: 14px;">${flower.name}</p>
+                    <p style="margin: 3px 0 0 0; color: #ffcbde; font-weight: bold; font-size: 12px;">${flower.price} OMR</p>
+                </div>
+
+                ${flower.id <= 2 ? `
+                    <div style="padding: 10px; background-color: #f9f9f9; border-top: 1px solid #ddd;">
+                        <label style="color: #851720; font-weight: bold; font-size: 12px; display: block; margin-bottom: 6px;">Color:</label>
+                        <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+                            ${colors.map(color => `
+                                <label style="cursor: pointer; display: flex; align-items: center; gap: 4px; font-size: 11px;">
+                                    <input type="radio" name="flower_${flower.id}_color" value="${color.name}" onchange="changeFlowerImage(${flower.id}, '${flower.name}', '${color.name}')" style="cursor: pointer;">
+                                    <div style="width: 16px; height: 16px; background-color: ${color.hex}; border: 1px solid #666; border-radius: 50%;"></div>
+                                </label>
+                            `).join('')}
+                        </div>
+                    </div>
+                ` : ''}
+
+                <div style="padding: 10px; display: flex; align-items: center; justify-content: center; gap: 8px; ${flower.id <= 2 ? 'border-top: 1px solid #ddd;' : ''}">
+                    <button onclick="decreaseFlowerQuantity(${flower.id})" style="background-color: #851720; color: white; border: none; border-radius: 3px; width: 28px; height: 28px; font-weight: bold; cursor: pointer; font-size: 16px;">-</button>
+                    <input type="number" id="flower_qty_${flower.id}" value="0" min="0" max="20" onchange="updateSelectedFlowers()" style="width: 45px; text-align: center; border: 1px solid #ddd; border-radius: 3px; padding: 4px; font-weight: bold; color: #333;">
+                    <button onclick="increaseFlowerQuantity(${flower.id})" style="background-color: #851720; color: white; border: none; border-radius: 3px; width: 28px; height: 28px; font-weight: bold; cursor: pointer; font-size: 16px;">+</button>
+                </div>
+            </div>
+        </div>
+    `).join('');
+
+    document.querySelector('input[name="flower_1_color"][value="Red"]').checked = true;
+    document.querySelector('input[name="flower_2_color"][value="Red"]').checked = true;
+}
+
+function changeFlowerImage(flowerId, flowerName, colorName) {
+    const colorImages = {
+        'Roses Per One': {
+            'Red': 'imgs/red Roses (2).png',
+            'Pink': 'imgs/pink Roses (3).png',
+            'White': 'imgs/white Roses (1).png',
+            'Yellow': 'imgs/yellow Roses (4).png'
+        },
+        'Tulips Per One': {
+            'Red': 'imgs/red tulip (3).png',
+            'Pink': 'imgs/pink tulip (2).png',
+            'White': 'imgs/white tulip (1).png',
+            'Yellow': 'imgs/yellow tulip (4).png'
+        }
+    };
+    const img = document.getElementById(`flower_img_${flowerId}`);
+    img.src = colorImages[flowerName][colorName];
+    updateSelectedFlowers();
+}
+
+function increaseFlowerQuantity(flowerId) {
+    const input = document.getElementById(`flower_qty_${flowerId}`);
+    if (input.value < 20) {
+        input.value = parseInt(input.value) + 1;
+        updateSelectedFlowers();
+    }
+}
+
+function decreaseFlowerQuantity(flowerId) {
+    const input = document.getElementById(`flower_qty_${flowerId}`);
+    if (input.value > 0) {
+        input.value = parseInt(input.value) - 1;
+        updateSelectedFlowers();
+    }
+}
+
+function loadVases() {
+    const vaseOptions = document.getElementById('vaseOptions');
+    vaseOptions.innerHTML = vases.map(vase => `
+        <div class="col-md-6 col-lg-3 mb-3">
+            <div style="position: relative; cursor: pointer; border: 2px solid transparent; border-radius: 10px; overflow: hidden; transition: all 0.3s ease;"
+                 onmouseover="this.style.borderColor='#851720'; this.style.boxShadow='0 4px 10px rgba(133, 23, 32, 0.3)';"
+                 onmouseout="this.style.borderColor='transparent'; this.style.boxShadow='none';">
+                <input class="form-check-input" type="radio" name="vase" id="vase_${vase.id}" value="${vase.name}" data-price="${vase.price}" data-image="${vase.image}" onchange="updatePrice()" style="position: absolute; top: 10px; left: 10px; z-index: 10; width: 20px; height: 20px;">
+                <img src="${vase.image}" alt="${vase.name}" style="width: 100%; height: 150px; object-fit: cover;">
+                <div style="background-color: rgba(0, 0, 0, 0.7); color: white; padding: 10px; text-align: center;">
+                    <p style="margin: 0; font-weight: bold;">${vase.name}</p>
+                    <p style="margin: 5px 0 0 0; color: #ffcbde; font-weight: bold;">${vase.price} OMR</p>
+                </div>
+            </div>
+        </div>
+    `).join('');
+
+    document.getElementById('vase_1').checked = true;
+}
+
+function updateSelectedFlowers() {
+    selectedFlowers = [];
+    flowers.forEach(flower => {
+        const qty = parseInt(document.getElementById(`flower_qty_${flower.id}`).value);
+        if (qty > 0) {
+            let selectedColor = 'Default';
+            if (flower.id <= 2) {
+                const colorRadio = document.querySelector(`input[name="flower_${flower.id}_color"]:checked`);
+                if (colorRadio) {
+                    selectedColor = colorRadio.value;
+                }
+            }
+            selectedFlowers.push({
+                name: flower.name,
+                price: flower.price,
+                quantity: qty,
+                color: selectedColor,
+                image: document.getElementById(`flower_img_${flower.id}`).src
+            });
+        }
+    });
+
+    const selectedDiv = document.getElementById('selectedFlowers');
+    if (selectedFlowers.length === 0) {
+        selectedDiv.innerHTML = '<p style="color: #851720; text-align: center; grid-column: 1 / -1;" data-en="No flowers selected yet" data-ar="لم يتم اختيار أي زهور بعد">No flowers selected yet</p>';
+    } else {
+        selectedDiv.innerHTML = selectedFlowers.map(flower => `
+    <div style="text-align: center; border: 1px solid #ddd; border-radius: 8px; padding: 8px; background-color: white; font-size: 12px;">
+        <img src="${flower.image}" alt="${flower.name}" style="width: 100%; height: 50px; object-fit: contain; background-color: #f0f0f0; border-radius: 5px; margin-bottom: 6px;">
+        <p style="margin: 0; color: #851720; font-weight: bold; font-size: 11px;">${flower.name}</p>
+        ${flower.color !== 'Default' ? `<p style="margin: 2px 0 0 0; color: #851720; font-size: 10px;">🎨 ${flower.color}</p>` : ''}
+        <p style="margin: 2px 0 0 0; color: #851720; font-weight: bold; font-size: 10px;">Qty: ${flower.quantity}</p>
+        <p style="margin: 2px 0 0 0; color: #851720; font-weight: bold; font-size: 10px;">${flower.price * flower.quantity} OMR</p>
+    </div>
+`).join('');
+    }
+
+    updatePrice();
+}
+
+function toggleCardMessage() {
+    document.getElementById('cardMessageDiv').style.display = document.getElementById('card_yes').checked ? 'block' : 'none';
+}
+
+function increaseQuantity() {
+    const qty = document.getElementById('quantity');
+    if (qty.value < 10) qty.value = parseInt(qty.value) + 1;
+    updatePrice();
+}
+
+function decreaseQuantity() {
+    const qty = document.getElementById('quantity');
+    if (qty.value > 1) qty.value = parseInt(qty.value) - 1;
+    updatePrice();
+}
+
+function updatePrice() {
+    let flowersTotal = selectedFlowers.reduce((sum, flower) => sum + (flower.price * flower.quantity), 0);
+
+    const vaseSelected = document.querySelector('input[name="vase"]:checked');
+    const vasePrice = vaseSelected ? parseInt(vaseSelected.dataset.price) : 0;
+
+    const cardChecked = document.getElementById('card_yes').checked ? 1 : 0;
+
+    const quantity = parseInt(document.getElementById('quantity').value);
+
+    const subtotal = flowersTotal + vasePrice + cardChecked;
+
+    const total = subtotal * quantity;
+
+    document.getElementById('flowerTotal').textContent = (flowersTotal * quantity) + ' OMR';
+    document.getElementById('vaseTotal').textContent = (vasePrice * quantity) + ' OMR';
+    document.getElementById('cardTotal').textContent = (cardChecked * quantity) + ' OMR';
+    document.getElementById('quantityDisplay').textContent = quantity;
+    document.getElementById('totalPrice').textContent = total + ' OMR';
+
+    const minWarning = document.getElementById('minPriceWarning');
+    if (total < 10) {
+        minWarning.style.display = 'block';
+    } else {
+        minWarning.style.display = 'none';
+    }
+}
+
+function addBouquetToCart() {
+    if (selectedFlowers.length === 0) {
+        alert(currentLanguage === 'EN' ? '❌ Please select at least one type of flower!' : '❌ يرجى اختيار نوع واحد على الأقل من الزهور!');
+        return;
+    }
+
+    const total = parseInt(document.getElementById('totalPrice').textContent);
+    if (total < 10) {
+        alert(currentLanguage === 'EN' ? '❌ Minimum order is 10 OMR. Please add more flowers or increase quantity!' : '❌ الحد الأدنى للطلب هو 10 ريال عماني. يرجى إضافة المزيد من الزهور أو زيادة الكمية!');
+        return;
+    }
+
+    const vase = document.querySelector('input[name="vase"]:checked').value;
+    const quantity = parseInt(document.getElementById('quantity').value);
+    const card = document.getElementById('card_yes').checked;
+    const cardName = document.getElementById('cardName').value;
+    const cardMessage = document.getElementById('cardMessage').value;
+
+    const bouquet = {
+        id: Date.now(),
+        flowers: selectedFlowers.map(f => f.color !== 'Default' ? `${f.name} - ${f.color} (x${f.quantity})` : `${f.name} (x${f.quantity})`).join(', '),
+        vase: vase,
+        quantity: quantity,
+        card: card,
+        cardName: cardName,
+        cardMessage: cardMessage,
+        price: total
+    };
+
+    cart.push(bouquet);
+    saveCart();
+    updateCartBadge();
+
+    alert(currentLanguage === 'EN' ? '🎉 Custom bouquet added to cart!' : '🎉 تمت إضافة الباقة المخصصة إلى السلة!');
+
+    flowers.forEach(flower => {
+        document.getElementById(`flower_qty_${flower.id}`).value = 0;
+    });
+    document.getElementById('quantity').value = 1;
+    document.getElementById('cardMessage').value = '';
+    document.getElementById('cardName').value = '';
+    document.getElementById('cardMessageDiv').style.display = 'none';
+    document.getElementById('card_yes').checked = false;
+    updateSelectedFlowers();
+}
+
+function openCart() {
+    displayCartItems();
+    new bootstrap.Modal(document.getElementById('cartModal')).show();
+}
+
+function displayCartItems() {
+    const list = document.getElementById('cartItems');
+    
+    if (cart.length === 0) {
+        list.innerHTML = '<p style="color: #851720; text-align: center;">Your cart is empty</p>';
+        updatePrices();
+        return;
+    }
+
+    list.innerHTML = cart.map((item, index) => `
+        <div style="background: #fff1f6; border: 1px solid #ddd; border-radius: 8px; padding: 15px; margin-bottom: 15px;">
+            <div style="display: flex; justify-content: space-between; align-items: start;">
+                <div style="flex-grow: 1;">
+                    <p style="margin: 0; color: #851720; font-weight: bold;">Custom Bouquet</p>
+                    <p style="margin: 5px 0; color: #851720; font-size: 14px;"><strong>Flowers:</strong> ${item.flowers}</p>
+                    <p style="margin: 5px 0; color: #851720; font-size: 14px;"><strong>Vase:</strong> ${item.vase}</p>
+                    <p style="margin: 5px 0; color: #851720; font-size: 14px;"><strong>Quantity:</strong> ${item.quantity}</p>
+                    ${item.card ? `
+                        <p style="margin: 5px 0; color: #851720; font-size: 14px;"><strong>Card From:</strong> ${item.cardName || 'No name'}</p>
+                        <p style="margin: 5px 0; color: #851720; font-size: 14px;"><strong>Card Message:</strong> "${item.cardMessage || 'No message'}"</p>
+                    ` : ''}
+                    <p style="margin: 10px 0 0 0; color: #851720; font-weight: bold; font-size: 16px;">${item.price} OMR</p>
+                </div>
+                <button onclick="removeFromCart(${index})" style="background: #dc3545; color: white; border: none; padding: 8px 12px; border-radius: 5px; cursor: pointer;">✕</button>
+            </div>
+        </div>
+    `).join('');
+
+    updatePrices();
+}
+
+function removeFromCart(index) {
+    cart.splice(index, 1);
+    saveCart();
+    updateCartBadge();
+    displayCartItems();
+}
+
+function updatePrices() {
+    const subtotal = cart.reduce((sum, item) => sum + item.price, 0);
+    const delivery = subtotal > 25 ? 0 : 5;
+    const total = subtotal + delivery;
+
+    document.getElementById('subtotalPrice').textContent = subtotal.toFixed(2) + ' OMR';
+    document.getElementById('deliveryFee').textContent = (delivery === 0 ? 'FREE' : delivery) + (delivery === 0 ? '' : ' OMR');
+    document.getElementById('cartTotal').textContent = total.toFixed(2) + ' OMR';
+}
+
+function goToCheckout() {
+    if (cart.length === 0) {
+        alert('Your cart is empty!');
+        return;
+    }
+    
+    const subtotal = cart.reduce((sum, item) => sum + item.price, 0);
+    const delivery = subtotal > 25 ? 0 : 5;
+    const total = subtotal + delivery;
+    
+    document.getElementById('checkoutTotal').textContent = total.toFixed(2) + ' OMR';
+    
+    bootstrap.Modal.getInstance(document.getElementById('cartModal')).hide();
+    new bootstrap.Modal(document.getElementById('checkoutModal')).show();
+}
+
+function toggleCardDetails() {
+    const details = document.getElementById('cardDetails');
+    const method = document.querySelector('input[name="paymentMethod"]:checked');
+    
+    if (method && details) {
+        details.style.display = method.value === 'creditCard' ? 'block' : 'none';
+    }
+}
+
+function placeOrder() {
+    const name = document.getElementById('deliveryName').value.trim();
+    const phone = document.getElementById('deliveryPhone').value.trim();
+    const address = document.getElementById('deliveryAddress').value.trim();
+    const city = document.getElementById('deliveryCity').value.trim();
+    const postal = document.getElementById('deliveryPostal').value.trim();
+
+    if (!name || !phone || !address || !city || !postal) {
+        alert('Please fill all delivery fields!');
+        return;
+    }
+
+    const method = document.querySelector('input[name="paymentMethod"]:checked');
+    if (!method) {
+        alert('Please select a payment method!');
+        return;
+    }
+
+    const result = FloraSharedCommerce.saveOrder({
+        cart,
+        deliveryInfo: {
+            name,
+            phone,
+            address,
+            city,
+            postal
+        },
+        paymentMethod: method.value
+    });
+
+    alert(currentLanguage === 'EN' ? 
+        `✅ Order Confirmed!\n\nOrder ID: ${result.orderId}\nTotal: ${result.total.toFixed(2)} OMR\nDelivery to: ${city}\n\nThank you for shopping with FLORA!` :
+        `✅ تم تأكيد الطلب!\n\nرقم الطلب: ${result.orderId}\nالإجمالي: ${result.total.toFixed(2)} ريال عماني\nالتسليم إلى: ${city}\n\nشكراً لك على التسوق مع فلورا!`);
+    
+    cart = [];
+    saveCart();
+    updateCartBadge();
+    
+    document.getElementById('deliveryName').value = '';
+    document.getElementById('deliveryPhone').value = '';
+    document.getElementById('deliveryAddress').value = '';
+    document.getElementById('deliveryCity').value = '';
+    document.getElementById('deliveryPostal').value = '';
+    
+    bootstrap.Modal.getInstance(document.getElementById('checkoutModal')).hide();
+}
+</script>
+
+</body>
+</html>

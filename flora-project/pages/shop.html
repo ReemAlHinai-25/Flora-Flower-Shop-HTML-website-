@@ -1,0 +1,963 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="FLORA Flower Shop - Premium flowers for every occasion">
+    <meta name="keywords" content="flowers, bouquet, birthday, wedding, anniversary">
+    <title>Shop - FLORA Flower Shop</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <style>
+        body {
+            background-color: #fff1f6;
+        }
+
+        body.ar {
+            direction: rtl;
+            text-align: right;
+        }
+
+        body.en {
+            direction: ltr;
+            text-align: left;
+        }
+
+        .product-card {
+            background-color: #fff;
+            border: 2px solid #851720;
+            border-radius: 10px;
+            padding: 15px;
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+
+        .product-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(133, 23, 32, 0.3);
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .btn-add {
+            background-color: #851720;
+            color: #ffcbde;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .btn-add:hover {
+            background-color: #6b1218;
+        }
+    </style>
+</head>
+
+<body class="en">
+
+<!-- HEADER with NAVBAR -->
+<header class="navbar navbar-expand-lg sticky-top" style="background-color: #ffcbde;">
+    <nav class="container-fluid">
+        <a class="navbar-brand" href="index.html" style="display: flex; align-items: center; gap: 8px; text-decoration: none;">
+            <img src="imgs/Red Simple Flowers Shop Logo.png" alt="FLORA" style="height: 40px;">
+            <i class="bi bi-house-fill" style="font-size: 24px; color: #851720;"></i>
+        </a>
+        <div style="display: flex; gap: 15px; align-items: center;">
+            <div>
+                <span id="langEN" onclick="switchLanguage('EN')" style="cursor: pointer; color: #fff; background-color: #851720; padding: 5px 10px; border-radius: 3px; margin-right: 5px;">EN</span>
+                <span id="langAR" onclick="switchLanguage('AR')" style="cursor: pointer; color: #851720; padding: 5px 10px; background-color: #ffcbde; border-radius: 3px;">العربية</span>
+            </div>
+            <button onclick="openCart()" class="btn" style="position: relative;">
+                <i class="bi bi-cart" style="font-size: 24px; color: #851720;"></i>
+                <span id="cartCount" style="position: absolute; top: -5px; right: -5px; background: #851720; color: white; border-radius: 50%; width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; font-size: 12px;">0</span>
+            </button>
+        </div>
+    </nav>
+</header>
+
+<!-- MAIN CONTENT -->
+<main class="container mt-5">
+    
+    <!-- PAGE TITLE SECTION -->
+    <section class="mb-40">
+        <h1 style="color: #851720; text-align: center; margin-bottom: 40px;" data-en="Shop Flowers" data-ar="متجر الزهور">Shop Flowers</h1>
+    </section>
+<!-- MINIMALIST LINE STEPS -->
+<section class="mb-3">
+    <div style="padding: 10px 0;">
+        <div style="display: flex; align-items: center; gap: 0;">
+            <!-- Step 1 -->
+            <div style="flex: 1; text-align: center;">
+                <div style="width: 36px; height: 36px; border-radius: 50%; background-color: #851720; color: white; display: flex; align-items: center; justify-content: center; margin: 0 auto; font-size: 16px; font-weight: bold;">1</div>
+                <small style="color: #851720; font-weight: bold; font-size: 10px; display: block; margin-top: 4px;" data-en="Browse" data-ar="تصفح">Browse</small>
+            </div>
+            
+            <!-- Line -->
+            <div style="flex: 0.5; height: 2px; background-color: #851720;"></div>
+            
+            <!-- Step 2 -->
+            <div style="flex: 1; text-align: center;">
+                <div style="width: 36px; height: 36px; border-radius: 50%; background-color: #ddd; color: #999; display: flex; align-items: center; justify-content: center; margin: 0 auto; font-size: 16px; font-weight: bold;">2</div>
+                <small style="color: #999; font-weight: bold; font-size: 10px; display: block; margin-top: 4px;" data-en="Cart" data-ar="السلة">Cart</small>
+            </div>
+            
+            <!-- Line -->
+            <div style="flex: 0.5; height: 2px; background-color: #ddd;"></div>
+            
+            <!-- Step 3 -->
+            <div style="flex: 1; text-align: center;">
+                <div style="width: 36px; height: 36px; border-radius: 50%; background-color: #ddd; color: #999; display: flex; align-items: center; justify-content: center; margin: 0 auto; font-size: 16px; font-weight: bold;">3</div>
+                <small style="color: #999; font-weight: bold; font-size: 10px; display: block; margin-top: 4px;" data-en="Checkout" data-ar="الدفع">Checkout</small>
+            </div>
+        </div>
+    </div>
+</section>
+
+   
+  
+
+    <!-- FILTERS & PRODUCTS SECTION -->
+    <section class="row">
+        
+        <!-- SIDEBAR - FILTERS (ASIDE) -->
+        <aside class="col-md-3">
+            <div class="card" style="border: 2px solid #851720; border-radius: 10px;">
+                <div class="card-body">
+                    <h5 style="color: #851720; border-bottom: 2px solid #851720; padding-bottom: 10px; margin-bottom: 20px;" data-en="Filters" data-ar="المرشحات">Filters</h5>
+                    
+                    <!-- CATEGORY FILTER SUBSECTION -->
+                    <section>
+                        <h6 style="color: #851720; margin-bottom: 15px; font-weight: bold;" data-en="Category" data-ar="الفئة">Category</h6>
+                        <div class="mb-3">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="category" id="cat_all" value="all" checked onchange="applyFilters()">
+                                <label class="form-check-label" for="cat_all" style="color: #851720;" data-en="All Products" data-ar="جميع المنتجات">All Products</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="category" id="cat_birthday" value="birthday" onchange="applyFilters()">
+                                <label class="form-check-label" for="cat_birthday" style="color: #851720;">🎂 <span data-en="Birthday" data-ar="عيد ميلاد">Birthday</span></label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="category" id="cat_wedding" value="wedding" onchange="applyFilters()">
+                                <label class="form-check-label" for="cat_wedding" style="color: #851720;">💒 <span data-en="Wedding" data-ar="زفاف">Wedding</span></label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="category" id="cat_anniversary" value="anniversary" onchange="applyFilters()">
+                                <label class="form-check-label" for="cat_anniversary" style="color: #851720;">💕 <span data-en="Anniversary" data-ar="ذكرى سنوية">Anniversary</span></label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="category" id="cat_valentines" value="valentines" onchange="applyFilters()">
+                                <label class="form-check-label" for="cat_valentines" style="color: #851720;">❤️ <span data-en="Valentines" data-ar="يوم الحب">Valentines</span></label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="category" id="cat_newborn" value="newborn" onchange="applyFilters()">
+                                <label class="form-check-label" for="cat_newborn" style="color: #851720;">👶 <span data-en="New Born" data-ar="مولود جديد">New Born</span></label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="category" id="cat_graduation" value="graduation" onchange="applyFilters()">
+                                <label class="form-check-label" for="cat_graduation" style="color: #851720;">🎓 <span data-en="Graduation" data-ar="التخرج">Graduation</span></label>
+                            </div>
+                        </div>
+                    </section>
+
+                    <hr style="margin: 20px 0;">
+
+                    <!-- PRICE FILTER SUBSECTION -->
+                    <section>
+                        <h6 style="color: #851720; margin-bottom: 15px; font-weight: bold;" data-en="Price Range" data-ar="نطاق السعر">Price Range</h6>
+                        <div class="mb-3">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="price_all" value="all" onchange="applyFilters()">
+                                <label class="form-check-label" for="price_all" style="color: #851720;" data-en="All Prices" data-ar="جميع الأسعار">All Prices</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input price-check" type="checkbox" id="price_0_10" value="0-10" onchange="applyFilters()">
+                                <label class="form-check-label" for="price_0_10" style="color: #851720;">0 - 10 OMR</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input price-check" type="checkbox" id="price_10_25" value="10-25" onchange="applyFilters()">
+                                <label class="form-check-label" for="price_10_25" style="color: #851720;">10 - 25 OMR</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input price-check" type="checkbox" id="price_25_30" value="25-30" onchange="applyFilters()">
+                                <label class="form-check-label" for="price_25_30" style="color: #851720;">25 - 30 OMR</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input price-check" type="checkbox" id="price_30_plus" value="30+" onchange="applyFilters()">
+                                <label class="form-check-label" for="price_30_plus" style="color: #851720;">30+ OMR</label>
+                            </div>
+                        </div>
+                    </section>
+
+                    <hr style="margin: 20px 0;">
+
+                    <!-- RATING FILTER SUBSECTION -->
+                    <section>
+                        <h6 style="color: #851720; margin-bottom: 15px; font-weight: bold;" data-en="Rating" data-ar="التقييم">Rating</h6>
+                        <div class="mb-3">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="rating_all" value="all" onchange="applyFilters()">
+                                <label class="form-check-label" for="rating_all" style="color: #851720;" data-en="All Ratings" data-ar="جميع التقييمات">All Ratings</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input rating-check" type="checkbox" id="rating_5" value="5" onchange="applyFilters()">
+                                <label class="form-check-label" for="rating_5" style="color: #851720;">⭐⭐⭐⭐⭐ <span data-en="5 Stars" data-ar="5 نجوم">5 Stars</span></label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input rating-check" type="checkbox" id="rating_4" value="4" onchange="applyFilters()">
+                                <label class="form-check-label" for="rating_4" style="color: #851720;">⭐⭐⭐⭐ <span data-en="4+ Stars" data-ar="4+ نجوم">4+ Stars</span></label>
+                            </div>
+                        </div>
+                    </section>
+
+                    <hr style="margin: 20px 0;">
+
+                    <button onclick="resetFilters()" class="btn w-100" style="background-color: #851720; color: #ffcbde; font-weight: 600;" data-en="Reset Filters" data-ar="إعادة تعيين المرشحات">Reset Filters</button>
+                </div>
+            </div>
+        </aside>
+
+        <!-- MAIN PRODUCTS SECTION -->
+        <section class="col-md-9">
+            <div id="productsContainer" class="row">
+                <!-- Products will be loaded here as ARTICLE elements -->
+            </div>
+        </section>
+
+    </section>
+
+   
+
+</main>
+
+<!-- PRODUCTS/SERVICES TABLE SECTION -->
+<section class="container mt-5 mb-5">
+    <h3 style="color: #851720; margin-bottom: 25px; text-align: center;" data-en="Our Products & Services" data-ar="منتجاتنا والخدمات">Our Products & Services</h3>
+    <table class="table table-striped table-hover" style="border: 2px solid #851720;">
+        <thead style="background-color: #851720; color: #ffcbde;">
+            <tr>
+                <th data-en="Category" data-ar="الفئة">Category</th>
+                <th data-en="Description" data-ar="الوصف">Description</th>
+                <th data-en="Price Range" data-ar="نطاق السعر">Price Range</th>
+                <th data-en="Delivery Time" data-ar="وقت التسليم">Delivery Time</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="table-light">
+                <td style="color: #851720; font-weight: bold;">🎂 Birthday</td>
+                <td style="color: #851720;">Colorful arrangements for birthday celebrations</td>
+                <td style="color: #851720;">15 - 45 OMR</td>
+                <td style="color: #851720;">24 hours</td>
+            </tr>
+            <tr class="table-light">
+                <td style="color: #851720; font-weight: bold;">💒 Wedding</td>
+                <td style="color: #851720;">Elegant bridal bouquets and decorations</td>
+                <td style="color: #851720;">50 - 150 OMR</td>
+                <td style="color: #851720;">3-5 days</td>
+            </tr>
+            <tr class="table-light">
+                <td style="color: #851720; font-weight: bold;">💕 Anniversary</td>
+                <td style="color: #851720;">Romantic rose arrangements</td>
+                <td style="color: #851720;">15 - 65 OMR</td>
+                <td style="color: #851720;">24 hours</td>
+            </tr>
+            <tr class="table-light">
+                <td style="color: #851720; font-weight: bold;">❤️ Valentines</td>
+                <td style="color: #851720;">Special Valentine's Day collections</td>
+                <td style="color: #851720;">10 - 55 OMR</td>
+                <td style="color: #851720;">24 hours</td>
+            </tr>
+            <tr class="table-light">
+                <td style="color: #851720; font-weight: bold;">👶 New Born</td>
+                <td style="color: #851720;">Soft and cheerful newborn gift flowers</td>
+                <td style="color: #851720;">28 - 35 OMR</td>
+                <td style="color: #851720;">24 hours</td>
+            </tr>
+            <tr class="table-light">
+                <td style="color: #851720; font-weight: bold;">🎓 Graduation</td>
+                <td style="color: #851720;">Congratulations and achievement bouquets</td>
+                <td style="color: #851720;">8 - 35 OMR</td>
+                <td style="color: #851720;">24 hours</td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+<!-- CART MODAL -->
+<div class="modal fade" id="cartModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: #851720; color: #ffcbde;">
+                <h5 class="modal-title" data-en="Shopping Cart" data-ar="سلة التسوق">Shopping Cart</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body" style="padding: 30px;">
+                <div id="cartItems" style="max-height: 400px; overflow-y: auto; margin-bottom: 20px;"></div>
+
+                <hr style="border: 1px solid #ddd; margin: 20px 0;">
+
+                <div style="background-color: #f9f9f9; border: 1px solid #ddd; border-radius: 8px; padding: 15px;">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px solid #ddd;">
+                        <span style="color: #851720;" data-en="Subtotal:" data-ar="المجموع الفرعي:">Subtotal:</span>
+                        <span id="subtotalPrice" style="color: #851720; font-weight: bold;">0 OMR</span>
+                    </div>
+
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px solid #ddd;">
+                        <span style="color: #851720;" data-en="Delivery Fee:" data-ar="رسوم التوصيل:">Delivery Fee:</span>
+                        <span id="deliveryFee" style="color: #851720; font-weight: bold;">5 OMR</span>
+                    </div>
+
+                    <div style="display: flex; justify-content: space-between; margin-top: 15px;">
+                        <h5 style="color: #851720; margin: 0;" data-en="Total:" data-ar="الإجمالي:">Total:</h5>
+                        <h5 id="cartTotal" style="color: #851720; font-weight: bold; margin: 0;">0 OMR</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer" style="border-top: 1px solid #ddd; padding: 20px;">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-en="Continue Shopping" data-ar="المتابعة في التسوق">Continue Shopping</button>
+                <button onclick="goToCheckout()" class="btn" style="background-color: #851720; color: #ffcbde; font-weight: 600;" data-en="Proceed to Checkout" data-ar="المتابعة إلى الدفع">Proceed to Checkout</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- CHECKOUT MODAL -->
+<div class="modal fade" id="checkoutModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: #851720; color: #ffcbde;">
+                <h5 class="modal-title" data-en="Checkout" data-ar="الدفع">Checkout</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body" style="padding: 30px;">
+                
+                <h6 style="color: #851720; font-weight: bold; margin-bottom: 15px; border-bottom: 2px solid #851720; padding-bottom: 10px;" data-en="📍 Delivery Address" data-ar="📍 عنوان التسليم">📍 Delivery Address</h6>
+
+                <div class="mb-3">
+                    <label for="deliveryName" style="color: #851720; font-weight: bold; display: block; margin-bottom: 8px;" data-en="Recipient Name *" data-ar="اسم المستقبل *">Recipient Name *</label>
+                    <input type="text" class="form-control" id="deliveryName" placeholder="Enter recipient name" required style="border: 2px solid #851720; border-radius: 8px; padding: 10px;">
+                </div>
+
+                <div class="mb-3">
+                    <label for="deliveryPhone" style="color: #851720; font-weight: bold; display: block; margin-bottom: 8px;" data-en="Recipient Phone *" data-ar="هاتف المستقبل *">Recipient Phone *</label>
+                    <input type="tel" class="form-control" id="deliveryPhone" placeholder="+968 90000000" required style="border: 2px solid #851720; border-radius: 8px; padding: 10px;">
+                </div>
+
+                <div class="mb-3">
+                    <label for="deliveryAddress" style="color: #851720; font-weight: bold; display: block; margin-bottom: 8px;" data-en="Street Address *" data-ar="عنوان الشارع *">Street Address *</label>
+                    <input type="text" class="form-control" id="deliveryAddress" placeholder="Enter street address" required style="border: 2px solid #851720; border-radius: 8px; padding: 10px;">
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="deliveryCity" style="color: #851720; font-weight: bold; display: block; margin-bottom: 8px;" data-en="City *" data-ar="المدينة *">City *</label>
+                        <input type="text" class="form-control" id="deliveryCity" placeholder="Muscat" required style="border: 2px solid #851720; border-radius: 8px; padding: 10px;">
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="deliveryPostal" style="color: #851720; font-weight: bold; display: block; margin-bottom: 8px;" data-en="Postal Code *" data-ar="الرمز البريدي *">Postal Code *</label>
+                        <input type="text" class="form-control" id="deliveryPostal" placeholder="e.g., 100" required style="border: 2px solid #851720; border-radius: 8px; padding: 10px;">
+                    </div>
+                </div>
+
+                <hr style="border: 1px solid #ddd; margin: 20px 0;">
+
+                <h6 style="color: #851720; font-weight: bold; margin-bottom: 15px; border-bottom: 2px solid #851720; padding-bottom: 10px;" data-en="💳 Payment Method" data-ar="💳 طريقة الدفع">💳 Payment Method</h6>
+
+                <div class="mb-3">
+                    <div class="form-check mb-3">
+                        <input class="form-check-input" type="radio" name="paymentMethod" id="creditCard" value="creditCard" checked onchange="toggleCardDetails()" style="accent-color: #851720;">
+                        <label class="form-check-label" for="creditCard" style="color: #851720; font-weight: 500;" data-en="Credit/Debit Card" data-ar="بطاقة ائتمان/خصم">Credit/Debit Card</label>
+                    </div>
+
+                    <div class="form-check mb-3">
+                        <input class="form-check-input" type="radio" name="paymentMethod" id="bankTransfer" value="bankTransfer" onchange="toggleCardDetails()" style="accent-color: #851720;">
+                        <label class="form-check-label" for="bankTransfer" style="color: #851720; font-weight: 500;" data-en="Bank Transfer" data-ar="تحويل بنكي">Bank Transfer</label>
+                    </div>
+
+                    <div class="form-check mb-3">
+                        <input class="form-check-input" type="radio" name="paymentMethod" id="cashOnDelivery" value="cashOnDelivery" onchange="toggleCardDetails()" style="accent-color: #851720;">
+                        <label class="form-check-label" for="cashOnDelivery" style="color: #851720; font-weight: 500;" data-en="Cash on Delivery" data-ar="الدفع عند التسليم">Cash on Delivery</label>
+                    </div>
+                </div>
+
+                <div id="cardDetails" style="background-color: #fff9e6; border: 1px solid #851720; border-radius: 8px; padding: 15px;">
+                    <div class="mb-3">
+                        <label for="cardName" style="color: #851720; font-weight: bold; display: block; margin-bottom: 8px;" data-en="Cardholder Name *" data-ar="اسم صاحب البطاقة *">Cardholder Name *</label>
+                        <input type="text" class="form-control" id="cardName" placeholder="John Doe" style="border: 1px solid #851720; border-radius: 5px; padding: 8px;">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="cardNumber" style="color: #851720; font-weight: bold; display: block; margin-bottom: 8px;" data-en="Card Number *" data-ar="رقم البطاقة *">Card Number *</label>
+                        <input type="text" class="form-control" id="cardNumber" placeholder="1234 5678 9012 3456" maxlength="19" style="border: 1px solid #851720; border-radius: 5px; padding: 8px;">
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="cardExpiry" style="color: #851720; font-weight: bold; display: block; margin-bottom: 8px;" data-en="Expiry Date *" data-ar="تاريخ الانتهاء *">Expiry Date *</label>
+                            <input type="text" class="form-control" id="cardExpiry" placeholder="MM/YY" maxlength="5" style="border: 1px solid #851720; border-radius: 5px; padding: 8px;">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="cardCVV" style="color: #851720; font-weight: bold; display: block; margin-bottom: 8px;" data-en="CVV *" data-ar="CVV *">CVV *</label>
+                            <input type="text" class="form-control" id="cardCVV" placeholder="123" maxlength="3" style="border: 1px solid #851720; border-radius: 5px; padding: 8px;">
+                        </div>
+                    </div>
+                </div>
+
+                <hr style="border: 1px solid #ddd; margin: 20px 0;">
+
+                <div style="background-color: #f9f9f9; border: 1px solid #ddd; border-radius: 8px; padding: 15px;">
+                    <p style="color: #851720; margin: 0; font-weight: bold; margin-bottom: 10px;" data-en="Order Total:" data-ar="إجمالي الطلب:">Order Total:</p>
+                    <h4 id="checkoutTotal" style="color: #851720; font-weight: bold; margin: 0;">0 OMR</h4>
+                </div>
+            </div>
+            <div class="modal-footer" style="border-top: 1px solid #ddd; padding: 20px;">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-en="Back to Cart" data-ar="العودة إلى السلة">Back to Cart</button>
+                <button onclick="placeOrder()" class="btn" style="background-color: #851720; color: #ffcbde; font-weight: 600;" data-en="Place Order" data-ar="تقديم الطلب">Place Order</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- WISHLIST MODAL -->
+<div class="modal fade" id="wishlistModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: #851720; color: #ffcbde;">
+                <h5 class="modal-title" data-en="My Wishlist ❤️" data-ar="قائمة الأمنيات ❤️">My Wishlist ❤️</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div id="wishlistItems"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- FOOTER -->
+<footer style="background-color: #851720; padding: 40px 0; margin-top: 60px;">
+    <div class="container">
+        <div class="row text-center" style="text-align: center; color: #FFDAE4;">
+            <div class="col-md-3" style="margin-bottom: 20px;">
+                <h4 style="color: #FFDAE4; font-weight: bold; font-size: 24px;">FLORA</h4>
+                <p style="color: #FFDAE4; font-family: 'Times New Roman', Times, serif;">Flower Shop</p>
+            </div>
+            <div class="col-md-3" style="margin-bottom: 20px; color: #FFDAE4;">
+                <h5 style="color: #FFDAE4; font-weight: bold; margin-bottom: 15px;" data-en="Social Media" data-ar="وسائل التواصل الاجتماعي">Social Media</h5>
+                <div style="display: flex; gap: 15px; justify-content: center; font-size: 24px;">
+                    <a href="#" style="color: #FFDAE4; text-decoration: none;"><i class="bi bi-facebook"></i></a>
+                    <a href="#" style="color: #FFDAE4; text-decoration: none;"><i class="bi bi-instagram"></i></a>
+                    <a href="#" style="color: #FFDAE4; text-decoration: none; font-weight: bold;">X</a>
+                </div>
+            </div>
+            <div class="col-md-3" style="margin-bottom: 20px; color: #FFDAE4;">
+                <h5 style="color: #FFDAE4; font-weight: bold; margin-bottom: 15px;" data-en="Policies" data-ar="السياسات">Policies</h5>
+                <ul style="list-style: none; padding: 0;">
+                    <li style="margin-bottom: 8px; cursor: pointer;" data-en="Delivery Policy" data-ar="سياسة التسليم">Delivery Policy</li>
+                    <li style="margin-bottom: 8px; cursor: pointer;" data-en="Return Policy" data-ar="سياسة الإرجاع">Return Policy</li>
+                </ul>
+            </div>
+            <div class="col-md-3" style="margin-bottom: 20px;">
+                <h5 style="color: #FFDAE4; font-weight: bold; margin-bottom: 15px;" data-en="Contact" data-ar="اتصل بنا">Contact</h5>
+                <p style="color: #FFDAE4; margin: 10px 0;">
+                    <i class="bi bi-telephone"></i> 
+                    <a href="tel:+96890000000" style="color: #FFDAE4; text-decoration: none;">+968 90000000</a>
+                </p>
+                <p style="color: #FFDAE4; margin: 10px 0;">
+                    <i class="bi bi-envelope"></i>
+                    <a href="mailto:info@florashop.com" style="color: #FFDAE4; text-decoration: none;">info@florashop.com</a>
+                </p>
+                <p style="color: #FFDAE4; margin: 10px 0;">
+                    <i class="bi bi-geo-alt"></i> Muscat, Oman
+                </p>
+            </div>
+        </div>
+        <hr style="border: 1px solid #FFDAE4; margin-top: 30px;">
+        <div class="row text-center" style="color: #FFDAE4; margin-top: 20px;">
+            <div class="col-12">
+                <p style="color: #FFDAE4; margin: 0;" data-en="&copy; 2026 FLORA Flower Shop. All rights reserved." data-ar="&copy; 2026 متجر فلورا للزهور. جميع الحقوق محفوظة.">&copy; 2026 FLORA Flower Shop. All rights reserved.</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+const products = [
+    { id: 1, name: 'Happy Birthday Sunny', price: 25, category: 'birthday', rating: 5, image: 'imgs/birthday 1.png' },
+    { id: 2, name: 'Birthday Bliss Pink', price: 35, category: 'birthday', rating: 5, image: 'imgs/imgsflower3.jpg.PNG' },
+    { id: 3, name: 'Celebration Bouquet', price: 30, category: 'birthday', rating: 4, image: 'imgs/Birthday Bliss Pink.PNG' },
+    { id: 4, name: 'Joyful Birthday Mix', price: 15, category: 'birthday', rating: 5, image: 'imgs/birthday 4.png' },
+    { id: 5, name: 'Bride\'s Dream', price: 50, category: 'wedding', rating: 5, image: 'imgs/wed 1.png' },
+    { id: 6, name: 'White Romance', price: 64, category: 'wedding', rating: 5, image: 'imgs/wed 2.png' },
+    { id: 7, name: 'Eternal Love', price: 45, category: 'wedding', rating: 5, image: 'imgs/wed 3.png' },
+    { id: 8, name: 'Elegant Bridal', price: 55, category: 'wedding', rating: 4, image: 'imgs/wed 4.png' },
+    { id: 9, name: 'Red Rose Flower Arrangement', price: 15, category: 'anniversary', rating: 5, image: 'imgs/anniversary 1.png' },
+    { id: 10, name: 'Forever Together', price: 60, category: 'anniversary', rating: 5, image: 'imgs/anniversary 4.png' },
+    { id: 11, name: 'Love Red Roses', price: 25, category: 'anniversary', rating: 5, image: 'imgs/anniversary 3.png' },
+    { id: 12, name: 'Heart of Roses', price: 65, category: 'anniversary', rating: 4, image: 'imgs/anniversary 2.png' },
+    { id: 13, name: 'Red Romance', price: 55, category: 'valentines', rating: 5, image: 'imgs/val 1.png' },
+    { id: 14, name: 'Love Express', price: 20, category: 'valentines', rating: 5, image: 'imgs/val 2.png' },
+    { id: 15, name: 'Passionate Red', price: 52, category: 'valentines', rating: 5, image: 'imgs/val 3.png' },
+    { id: 16, name: 'Cupid\'s Choice', price: 10, category: 'valentines', rating: 4, image: 'imgs/val 4.png' },
+    { id: 17, name: 'Soft Pink Baby', price: 28, category: 'newborn', rating: 5, image: 'imgs/nb 1.png' },
+    { id: 18, name: 'Welcome Baby Boy', price: 32, category: 'newborn', rating: 5, image: 'imgs/nb 2.png' },
+    { id: 19, name: 'Baby Bliss', price: 30, category: 'newborn', rating: 5, image: 'imgs/nb 3.png' },
+    { id: 20, name: 'Sweet Arrival', price: 35, category: 'newborn', rating: 4, image: 'imgs/nb 4.png' },
+    { id: 21, name: 'Congrats Graduate', price: 8, category: 'graduation', rating: 5, image: 'imgs/cong 4.png' },
+    { id: 22, name: 'Success Bouquet', price: 32, category: 'graduation', rating: 5, image: 'imgs/cong 2.png' },
+    { id: 23, name: 'Achievement Flowers', price: 15, category: 'graduation', rating: 5, image: 'imgs/cong 3.png' },
+    { id: 24, name: 'Proud Moment', price: 35, category: 'graduation', rating: 4, image: 'imgs/cong 1.png' }
+];
+
+let cart = [];
+let wishlist = [];
+let currentLanguage = 'EN';
+let currentSearchQuery = '';
+
+document.addEventListener('DOMContentLoaded', function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const searchQuery = urlParams.get('search');
+    const category = urlParams.get('category');
+    
+    loadCart();
+    updateCartBadge();
+    
+    if (searchQuery) {
+        currentSearchQuery = searchQuery;
+        performSearchOnShop(searchQuery);
+    } else if (category) {
+        document.getElementById('cat_' + category).checked = true;
+        applyFilters();
+    } else {
+        applyFilters();
+    }
+});
+
+function performSearchOnShop(query) {
+    const lowerQuery = query.toLowerCase();
+    const filtered = products.filter(p => 
+        p.name.toLowerCase().includes(lowerQuery) ||
+        p.category.toLowerCase().includes(lowerQuery)
+    );
+    displaySearchMessage(query, filtered.length);
+    displayProducts(filtered);
+}
+
+function displaySearchMessage(query, count) {
+    const container = document.getElementById('productsContainer');
+    if (count > 0) {
+        const message = `
+            <div class="col-12 mb-4">
+                <div style="background-color: #fff9e6; border: 2px solid #851720; border-radius: 8px; padding: 15px; text-align: center;">
+                    <p style="color: #851720; font-weight: bold; font-size: 16px; margin: 0;">
+                        ✅ Found <strong>${count}</strong> result(s) for "<strong>${query}</strong>"
+                    </p>
+                </div>
+            </div>
+        `;
+        container.insertAdjacentHTML('beforebegin', message);
+    } else {
+        const message = `
+            <div class="col-12 mb-4">
+                <div style="background-color: #ffe6e6; border: 2px solid #dc3545; border-radius: 8px; padding: 15px; text-align: center;">
+                    <p style="color: #dc3545; font-weight: bold; font-size: 16px; margin: 0;">
+                        ❌ No results found for "<strong>${query}</strong>"
+                    </p>
+                </div>
+            </div>
+        `;
+        container.insertAdjacentHTML('beforebegin', message);
+    }
+}
+
+function loadCart() {
+    const savedCart = localStorage.getItem('floraCart');
+    if (savedCart) {
+        cart = JSON.parse(savedCart);
+    }
+}
+
+function saveCart() {
+    localStorage.setItem('floraCart', JSON.stringify(cart));
+}
+
+function updateCartBadge() {
+    document.getElementById('cartCount').textContent = cart.length;
+}
+
+function switchLanguage(lang) {
+    currentLanguage = lang;
+    const langEN = document.getElementById('langEN');
+    const langAR = document.getElementById('langAR');
+    const body = document.body;
+
+    if (lang === 'EN') {
+        langEN.style.backgroundColor = '#851720';
+        langEN.style.color = '#fff';
+        langAR.style.backgroundColor = '#ffcbde';
+        langAR.style.color = '#851720';
+        body.classList.remove('ar');
+        body.classList.add('en');
+    } else {
+        langAR.style.backgroundColor = '#851720';
+        langAR.style.color = '#fff';
+        langEN.style.backgroundColor = '#ffcbde';
+        langEN.style.color = '#851720';
+        body.classList.remove('en');
+        body.classList.add('ar');
+    }
+
+    updateLanguage(lang);
+}
+
+function updateLanguage(lang) {
+    const elements = document.querySelectorAll('[data-en][data-ar]');
+    elements.forEach(el => {
+        if (lang === 'EN') {
+            el.textContent = el.getAttribute('data-en');
+        } else {
+            el.textContent = el.getAttribute('data-ar');
+        }
+    });
+}
+
+function applyFilters() {
+    const selectedCategory = document.querySelector('input[name="category"]:checked').value;
+    const selectedPrices = Array.from(document.querySelectorAll('.price-check:checked')).map(el => el.value);
+    const selectedRatings = Array.from(document.querySelectorAll('.rating-check:checked')).map(el => parseInt(el.value));
+
+    let filtered = products;
+
+    if (selectedCategory !== 'all') {
+        filtered = filtered.filter(p => p.category === selectedCategory);
+    }
+
+    if (selectedPrices.length > 0) {
+        filtered = filtered.filter(p => {
+            for (let range of selectedPrices) {
+                if (range === '0-10' && p.price >= 0 && p.price <= 10) return true;
+                if (range === '10-25' && p.price > 10 && p.price <= 25) return true;
+                if (range === '25-30' && p.price > 25 && p.price <= 30) return true;
+                if (range === '30+' && p.price > 30) return true;
+            }
+            return false;
+        });
+    }
+
+    if (selectedRatings.length > 0) {
+        filtered = filtered.filter(p => selectedRatings.includes(p.rating));
+    }
+
+    displayProducts(filtered);
+}
+
+function displayProducts(productsToShow) {
+    const container = document.getElementById('productsContainer');
+    
+    if (productsToShow.length === 0) {
+        container.innerHTML = '<p style="color: #851720; text-align: center; font-size: 18px; width: 100%;" data-en="No products found." data-ar="لم يتم العثور على منتجات.">No products found.</p>';
+        return;
+    }
+
+    container.innerHTML = productsToShow.map(product => `
+        <article class="col-md-6 col-lg-4 mb-4">
+            <div class="card h-100" style="border: 2px solid #851720; border-radius: 10px; overflow: hidden;">
+                <figure style="margin: 0;">
+                    <img src="${product.image}" class="card-img-top" style="height: 200px; object-fit: cover; width: 100%;" alt="${product.name}">
+                    <figcaption style="text-align: center; color: #851720; font-weight: bold; font-size: 12px; padding: 5px; display: none;">${product.name}</figcaption>
+                </figure>
+                <div class="card-body" style="background-color: #fff;">
+                    <h6 class="card-title" style="color: #851720; font-weight: bold;">${product.name}</h6>
+                    <p style="color: #ffb700; margin: 8px 0;">${'⭐'.repeat(product.rating)}</p>
+                    <h5 style="color: #851720; font-weight: bold; margin: 10px 0;">${product.price} OMR</h5>
+                    <div class="d-flex gap-2">
+                        <button onclick="addToCart(${product.id}, '${product.name}', ${product.price})" class="btn flex-grow-1" style="background-color: #851720; color: #ffcbde; font-weight: 600; font-size: 14px;" data-en="Add to Cart" data-ar="أضف إلى السلة">Add to Cart</button>
+                        <button onclick="addToWishlist(${product.id}, '${product.name}')" class="btn" style="background-color: #ffcbde; color: #851720; border: 2px solid #851720; font-weight: 600;">
+                            <i class="bi bi-heart"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </article>
+    `).join('');
+}
+
+function addToCart(id, name, price) {
+    cart.push({ id, name, price });
+    saveCart();
+    updateCartBadge();
+    alert(currentLanguage === 'EN' ? `✅ ${name} added to cart!` : `✅ تم إضافة ${name} إلى السلة!`);
+}
+
+function addToWishlist(id, name) {
+    if (!wishlist.find(item => item.id === id)) {
+        wishlist.push({ id, name });
+        alert(currentLanguage === 'EN' ? `❤️ ${name} added to wishlist!` : `❤️ تم إضافة ${name} إلى قائمة الأمنيات!`);
+    } else {
+        alert(currentLanguage === 'EN' ? 'Already in wishlist!' : 'موجود بالفعل في قائمة الأمنيات!');
+    }
+}
+
+function openCart() {
+    displayCartItems();
+    new bootstrap.Modal(document.getElementById('cartModal')).show();
+}
+
+function displayCartItems() {
+    const list = document.getElementById('cartItems');
+    
+    if (cart.length === 0) {
+        list.innerHTML = '<p style="color: #851720; text-align: center;">Your cart is empty</p>';
+        updatePrices();
+        return;
+    }
+
+    list.innerHTML = cart.map((item, index) => `
+        <div style="background: #fff; border: 1px solid #ddd; border-radius: 8px; padding: 15px; margin-bottom: 15px; display: flex; justify-content: space-between; align-items: center;">
+            <div style="flex-grow: 1;">
+                <p style="margin: 0; color: #851720; font-weight: 500;">${item.name}</p>
+                <p style="margin: 5px 0 0 0; color: #851720; font-weight: bold;">${item.price} OMR</p>
+            </div>
+            <button onclick="removeFromCart(${index})" style="background: #dc3545; color: white; border: none; padding: 8px 12px; border-radius: 5px; cursor: pointer;">✕</button>
+        </div>
+    `).join('');
+
+    updatePrices();
+}
+
+function removeFromCart(index) {
+    cart.splice(index, 1);
+    saveCart();
+    updateCartBadge();
+    displayCartItems();
+}
+
+function updatePrices() {
+    const subtotal = cart.reduce((sum, item) => sum + item.price, 0);
+    const delivery = subtotal > 25 ? 0 : 5;
+    const total = subtotal + delivery;
+
+    document.getElementById('subtotalPrice').textContent = subtotal.toFixed(2) + ' OMR';
+    document.getElementById('deliveryFee').textContent = (delivery === 0 ? 'FREE' : delivery) + (delivery === 0 ? '' : ' OMR');
+    document.getElementById('cartTotal').textContent = total.toFixed(2) + ' OMR';
+}
+
+function goToCheckout() {
+    if (cart.length === 0) {
+        alert('Your cart is empty!');
+        return;
+    }
+    
+    const subtotal = cart.reduce((sum, item) => sum + item.price, 0);
+    const delivery = subtotal > 25 ? 0 : 5;
+    const total = subtotal + delivery;
+    
+    document.getElementById('checkoutTotal').textContent = total.toFixed(2) + ' OMR';
+    
+    bootstrap.Modal.getInstance(document.getElementById('cartModal')).hide();
+    new bootstrap.Modal(document.getElementById('checkoutModal')).show();
+}
+
+function toggleCardDetails() {
+    const details = document.getElementById('cardDetails');
+    const method = document.querySelector('input[name="paymentMethod"]:checked');
+    
+    if (method && details) {
+        details.style.display = method.value === 'creditCard' ? 'block' : 'none';
+    }
+}
+
+function placeOrder() {
+    const name = document.getElementById('deliveryName').value.trim();
+    const phone = document.getElementById('deliveryPhone').value.trim();
+    const address = document.getElementById('deliveryAddress').value.trim();
+    const city = document.getElementById('deliveryCity').value.trim();
+    const postal = document.getElementById('deliveryPostal').value.trim();
+
+    if (!name || !phone || !address || !city || !postal) {
+        alert('Please fill all delivery fields!');
+        return;
+    }
+
+    const method = document.querySelector('input[name="paymentMethod"]:checked');
+    if (!method) {
+        alert('Please select a payment method!');
+        return;
+    }
+
+    const subtotal = cart.reduce((sum, item) => sum + item.price, 0);
+    const delivery = subtotal > 25 ? 0 : 5;
+    const total = subtotal + delivery;
+
+    // ===== SAVE ORDER TO STORAGE =====
+    const orderData = {
+        id: Date.now(),
+        date: new Date().toLocaleString(),
+        items: [...cart],
+        customer: {
+            name: document.getElementById('deliveryName').value,
+            phone: document.getElementById('deliveryPhone').value,
+            address: document.getElementById('deliveryAddress').value,
+            city: document.getElementById('deliveryCity').value,
+            postal: document.getElementById('deliveryPostal').value
+        },
+        paymentMethod: document.querySelector('input[name="paymentMethod"]:checked').value,
+        total: total.toFixed(2)
+    };
+    
+    // Load existing orders
+    let orders = [];
+    const savedOrders = localStorage.getItem('floraOrders');
+    if (savedOrders) {
+        orders = JSON.parse(savedOrders);
+    }
+    
+    // Add new order
+    orders.push(orderData);
+    localStorage.setItem('floraOrders', JSON.stringify(orders));
+
+    // Keep user-specific order history in sync for "View My Orders".
+    const currentUser = JSON.parse(localStorage.getItem('currentUser')) || null;
+    if (currentUser && currentUser.username) {
+        const userOrders = JSON.parse(localStorage.getItem('userOrders')) || {};
+        if (!userOrders[currentUser.username]) {
+            userOrders[currentUser.username] = [];
+        }
+
+        userOrders[currentUser.username].push({
+            orderId: 'ORD-' + orderData.id,
+            date: orderData.date,
+            items: orderData.items,
+            subtotal: subtotal,
+            delivery: delivery,
+            total: total.toFixed(2),
+            deliveryAddress: orderData.customer.address,
+            deliveryPhone: orderData.customer.phone,
+            deliveryName: orderData.customer.name,
+            deliveryCity: orderData.customer.city,
+            deliveryPostal: orderData.customer.postal,
+            paymentMethod: orderData.paymentMethod,
+            status: 'Confirmed'
+        });
+
+        localStorage.setItem('userOrders', JSON.stringify(userOrders));
+    }
+
+    alert(currentLanguage === 'EN' ? 
+        `✅ Order Confirmed!\n\nTotal: ${total.toFixed(2)} OMR\nDelivery to: ${city}\n\nThank you for shopping with FLORA!` :
+        `✅ تم تأكيد الطلب!\n\nالإجمالي: ${total.toFixed(2)} ريال عماني\nالتسليم إلى: ${city}\n\nشكراً لك على التسوق مع فلورا!`);
+    
+    cart = [];
+    saveCart();
+    updateCartBadge();
+    
+    document.getElementById('deliveryName').value = '';
+    document.getElementById('deliveryPhone').value = '';
+    document.getElementById('deliveryAddress').value = '';
+    document.getElementById('deliveryCity').value = '';
+    document.getElementById('deliveryPostal').value = '';
+    
+    bootstrap.Modal.getInstance(document.getElementById('checkoutModal')).hide();
+}
+
+function openWishlist() {
+    const wishlistItemsDiv = document.getElementById('wishlistItems');
+
+    if (wishlist.length === 0) {
+        wishlistItemsDiv.innerHTML = '<p style="color: #851720; text-align: center;" data-en="Your wishlist is empty" data-ar="قائمة الأمنيات فارغة">Your wishlist is empty</p>';
+    } else {
+        wishlistItemsDiv.innerHTML = wishlist.map((item, index) => `
+            <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px; border-bottom: 1px solid #ddd;">
+                <p style="margin: 0; color: #851720; font-weight: 500;">${item.name}</p>
+                <button onclick="removeFromWishlist(${index})" class="btn btn-sm btn-danger" data-en="Remove" data-ar="إزالة">Remove</button>
+            </div>
+        `).join('');
+    }
+
+    new bootstrap.Modal(document.getElementById('wishlistModal')).show();
+}
+
+function removeFromWishlist(index) {
+    wishlist.splice(index, 1);
+    openWishlist();
+}
+
+function resetFilters() {
+    document.getElementById('cat_all').checked = true;
+    document.querySelectorAll('.price-check').forEach(el => el.checked = false);
+    document.querySelectorAll('.rating-check').forEach(el => el.checked = false);
+    applyFilters();
+}
+
+// ===== DISPLAY ORDER CONFIRMATION =====
+function displayOrderConfirmation(orderData) {
+    const confirmationHTML = `
+    <div style="background: #fff9e6; border: 3px solid #851720; padding: 20px; border-radius: 10px; text-align: center;">
+        <h2 style="color: #851720; margin-bottom: 20px;">✅ ORDER CONFIRMED</h2>
+        
+        <div style="background: white; padding: 15px; border-radius: 8px; margin-bottom: 15px;">
+            <p style="color: #999; font-size: 12px;">Order ID</p>
+            <h3 style="color: #851720; margin: 0;">#${orderData.id}</h3>
+        </div>
+        
+        <div style="text-align: left; background: white; padding: 15px; border-radius: 8px; margin-bottom: 15px;">
+            <h4 style="color: #851720; margin-bottom: 10px;">📦 Order Items:</h4>
+            ${orderData.items.map(item => `
+                <div style="display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #ddd;">
+                    <span>${item.name}</span>
+                    <strong>${item.price} OMR</strong>
+                </div>
+            `).join('')}
+        </div>
+        
+        <div style="text-align: left; background: white; padding: 15px; border-radius: 8px; margin-bottom: 15px;">
+            <h4 style="color: #851720; margin-bottom: 10px;">📍 Delivery Address:</h4>
+            <p style="margin: 5px 0;"><strong>${orderData.customer.name}</strong></p>
+            <p style="margin: 5px 0;">📱 ${orderData.customer.phone}</p>
+            <p style="margin: 5px 0;">📍 ${orderData.customer.address}</p>
+            <p style="margin: 5px 0;">${orderData.customer.city} ${orderData.customer.postal}</p>
+        </div>
+        
+        <div style="text-align: left; background: white; padding: 15px; border-radius: 8px; margin-bottom: 15px;">
+            <h4 style="color: #851720; margin-bottom: 10px;">💳 Payment Method:</h4>
+            <p style="margin: 0;">${orderData.paymentMethod}</p>
+        </div>
+        
+        <div style="background: #851720; color: white; padding: 15px; border-radius: 8px; text-align: right;">
+            <small>Total Amount</small>
+            <h2 style="margin: 5px 0;">${orderData.total} OMR</h2>
+        </div>
+        
+        <button onclick="window.print()" style="background: #851720; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; margin-top: 15px; width: 100%; font-weight: bold;">
+            🖨️ Print Order
+        </button>
+    </div>
+    `;
+    
+    // Create modal for confirmation
+    const confirmationModal = document.createElement('div');
+    confirmationModal.id = 'orderConfirmationModal';
+    confirmationModal.style.cssText = 'position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); display: flex; align-items: center; justify-content: center; z-index: 9999;';
+    confirmationModal.innerHTML = `
+        <div style="background: white; padding: 20px; border-radius: 10px; max-width: 500px; width: 90%; max-height: 90vh; overflow-y: auto;">
+            ${confirmationHTML}
+            <button onclick="document.getElementById('orderConfirmationModal').remove()" style="background: #ddd; color: #851720; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; margin-top: 15px; width: 100%; font-weight: bold;">
+                ✓ Close
+            </button>
+        </div>
+    `;
+    document.body.appendChild(confirmationModal);
+}
+</script>
+
+</body>
+</html>

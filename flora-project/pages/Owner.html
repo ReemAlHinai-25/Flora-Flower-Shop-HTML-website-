@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Orders - Admin</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body style="background-color: #fff1f6;">
+
+<div class="container mt-5">
+    <h1 style="color: #851720; text-align: center;">📦 All Orders</h1>
+    
+    <div id="ordersList"></div>
+    
+    <button onclick="downloadOrdersCSV()" class="btn" style="background-color: #851720; color: white; margin-top: 20px;">
+        📥 Download as CSV
+    </button>
+</div>
+
+<script>
+    let orders = [];
+    
+    function loadOrders() {
+        const floraOrders = JSON.parse(localStorage.getItem('floraOrders')) || [];
+        const userOrdersMap = JSON.parse(localStorage.getItem('userOrders')) || {};
+
+        const normalizedFloraOrders = floraOrders.map(order => ({
+            id: order.id || (order.orderId ? String(order.orderId).replace('ORD-', '') : Date.now()),
+            orderId: order.orderId || `ORD-${order.id || Date.now()}`,
+            date: order.date || new Date().toLocaleString(),
+            items: Array.isArray(order.items) ? order.items : [],
+            customer: order.customer || {
+                name: order.deliveryName || 'N/A',
+                phone: order.deliveryPhone || 'N/A',
+                address: order.deliveryAddress || 'N/A',
+                city: order.deliveryCity || 'N/A',
+                postal: order.deliveryPostal || 'N/A'
+            },
+            paymentMethod: order.paymentMethod || 'cash',
+            total: order.total || 0
+        }));
+
+        const normalizedUserOrders = [];
+        Object.keys(userOrdersMap).forEach(username => {
+            const list = Array.isArray(userOrdersMap[username]) ? userOrdersMap[username] : [];
+            list.forEach(order => {
+                normalizedUserOrders.push({
+                    id: order.id || (order.orderId ? String(order.orderId).replace('ORD-', '') : Date.now()),
+                    orderId: order.orderId || `ORD-${Date.now()}`,
+                    date: order.date || new Date().toLocaleString(),
+                    items: Array.isArray(order.items) ? order.items : [],
+                    customer: {
+                        name: order.deliveryName || username,
+                        phone: order.deliveryPhone || 'N/A',
+                        address: order.deliveryAddress || 'N/A',
+                        city: order.deliveryCity || 'N/A',
+                        postal: order.deliveryPostal || 'N/A'
+                    },
+                    paymentMethod: order.paymentMethod || 'cash',
+                    total: order.total || 0
+                });
+            });
+        });
+
+        const merged = [...normalizedFloraOrders];
+        normalizedUserOrders.forEach(order => {
+            if (!merged.some(existing => existing.orderId === order.orderId)) {
+                merged.push(order);
+            }
+        });
+
+        orders = merged;
+        displayAllOrders();
+    }
+    
+    function displayAllOrders() {
+        const ordersList = document.getElementById('ordersList');
+        if (!orders.length) {
+            ordersList.innerHTML = '<p style="text-align:center; color:#851720; margin-top:20px;">No orders found yet.</p>';
+            return;
+        }
+
+        ordersList.innerHTML = orders.map(order => `
+            <div style="background: white; border: 2px solid #851720; padding: 15px; margin-bottom: 15px; border-radius: 8px;">
+                <div style="display: flex; justify-content: space-between;">
+                    <div>
+                        <h4 style="color: #851720;">Order #${order.orderId || order.id}</h4>
+                        <p><small style="color: #999;">${order.date}</small></p>
+                    </div>
+                    <div style="text-align: right;">
+                        <h3 style="color: #851720;">${order.total} OMR</h3>
+                    </div>
+                </div>
+                
+                <hr>
+                
+                <strong>Customer Info:</strong>
+                <p>
+                    ${order.customer.name}<br>
+                    📱 ${order.customer.phone}<br>
+                    📍 ${order.customer.address}, ${order.customer.city} ${order.customer.postal}
+                </p>
+                
+                <strong>Items (${order.items.length}):</strong>
+                <ul>
+                    ${order.items.map(item => `<li>${item.name} - ${item.price} OMR</li>`).join('')}
+                </ul>
+                
+                <strong>Payment:</strong> ${order.paymentMethod}
+            </div>
+        `).join('');
+    }
+    
+    function downloadOrdersCSV() {
+        let csv = 'Order ID,Date,Customer,Phone,Address,Items,Total\n';
+        orders.forEach(order => {
+            const idValue = order.orderId || order.id;
+            const fullAddress = `${order.customer.address}, ${order.customer.city} ${order.customer.postal}`;
+            csv += `${idValue},"${order.date}","${order.customer.name}","${order.customer.phone}","${fullAddress}","${order.items.length}","${order.total}"\n`;
+        });
+        
+        const blob = new Blob([csv], { type: 'text/csv' });
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `flora-orders-${new Date().toISOString().split('T')[0]}.csv`;
+        a.click();
+    }
+    
+    loadOrders();
+</script>
+
+</body>
+</html>
