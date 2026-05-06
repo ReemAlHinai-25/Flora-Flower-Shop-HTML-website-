@@ -1,4 +1,4 @@
-Set-Content -Path "c:\Users\reema\Desktop\flora-project\README.md" -Encoding UTF8 -Value @"
+
 # 🌸 FLORA - Flower Shop Website
 
 A bilingual (Arabic/English) flower shop website built with HTML, CSS, Bootstrap, and JavaScript.
@@ -35,10 +35,3 @@ A bilingual (Arabic/English) flower shop website built with HTML, CSS, Bootstrap
 ## GitHub Repository
 
 https://github.com/ReemAlHinai-25/Flora-Flower-Shop-HTML-website-
-"@
- Enable shell integration to improve command detection
-
-Command information is not available.
-README is fixed. Now push the update to GitHub:
-
-Claude Sonnet 4.6 • 0.9x
